@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
 
-function SignupFormPage() {
+function SignupFormModal() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const { closeModal } = useModal();
 
-  if (sessionUser) return <Redirect to="/" />;
+  const disabledButton = () => {
+    if(!email || !username || !password || !confirmPassword || username.length < 4 || password.length < 6) {
+      return true;
+    }
+    return false;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,12 +30,14 @@ function SignupFormPage() {
           username,
           password,
         })
-      ).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors);
-        }
-      });
+      )
+        .then(closeModal)
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            setErrors(data.errors);
+          }
+        });
     }
     return setErrors({
       confirmPassword: "Confirm Password field must be the same as the Password field"
@@ -38,12 +45,12 @@ function SignupFormPage() {
   };
 
   return (
-    <>
+    <div className="signupModalWrapper">
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="signupForm" onSubmit={handleSubmit}>
         <label>
-          Email
           <input
+          placeholder="Email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -52,8 +59,8 @@ function SignupFormPage() {
         </label>
         {errors.email && <p>{errors.email}</p>}
         <label>
-          Username
           <input
+          placeholder="Username"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -62,8 +69,8 @@ function SignupFormPage() {
         </label>
         {errors.username && <p>{errors.username}</p>}
         <label>
-          Password
           <input
+          placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -72,19 +79,32 @@ function SignupFormPage() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <label>
-          Confirm Password
           <input
+          placeholder="Confirm Password"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        {errors.confirmPassword && (
+          <p>{errors.confirmPassword}</p>
+        )}
+        {disabledButton() ?
+        <button
+        className="disabledSignupButton"
+        disabled={true}
+        >Sign Up
+        </button> :
+        <button
+        className="signupModalButton"
+        type="submit"
+        >Sign Up
+        </button>
+      }
       </form>
-    </>
+    </ div>
   );
 }
 
-export default SignupFormPage;
+export default SignupFormModal;
