@@ -30,13 +30,13 @@ Returns the information for the logged in user
 
 ### Heroes
 `GET /api/heroes/:userId`
-* Gets all the heroes that belong to the user
+* Gets all the heroes that belong to the logged-in user
 
 `POST /api/heroes/create`
 * Creates a new hero for the logged-in user
 
 `PUT /api/heroes/:heroId`
-* Updates the hero's xp or level after a successful battle
+* Users can update the name of an existing hero
 
 `DELETE /api/heroes/:heroId`
 * Deletes the hero

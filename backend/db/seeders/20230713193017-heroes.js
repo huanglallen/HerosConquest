@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         ownerId: 2,
-        name: 'codeman',
+        name: 'FoxLover',
         class: 'naruto',
         level: 16,
         xp: 18,
