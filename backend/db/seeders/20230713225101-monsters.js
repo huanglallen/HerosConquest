@@ -17,8 +17,8 @@ module.exports = {
         att: 1,
         def: 1,
         spd: 1,
-        attSpd: 2.0,
-        xp_drop: 1
+        attSpd: 2,
+        xpDrop: 1
       },
       {
         name: 'Death Knight',
@@ -26,8 +26,8 @@ module.exports = {
         att: 3,
         def: 1,
         spd: 1,
-        attSpd: 2.0,
-        xp_drop: 1
+        attSpd: 2,
+        xpDrop: 1
       },
       {
         name: 'The Lurker',
@@ -35,8 +35,8 @@ module.exports = {
         att: 50,
         def: 1,
         spd: 1,
-        attSpd: 2.0,
-        xp_drop: 1
+        attSpd: 2,
+        xpDrop: 1
       }
     ], {})
   },

@@ -2,7 +2,7 @@
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
-  options.schema = process.env.SCHEMA;  // define your schema in options object
+options.schema = process.env.SCHEMA; // define your schema in options object
 }
 
 module.exports = {
@@ -38,19 +38,17 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false
       },
-      xp_drop: {
+      xpDrop: {
         type: Sequelize.INTEGER,
         allowNull: false
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        type: Sequelize.DATE
       }
     }, options);
   },

@@ -17,12 +17,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Hero.init({
-    ownerId: DataTypes.INTEGER,
+    ownerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 12]
+        max: 12
       }
     },
     class: {
@@ -56,10 +59,6 @@ module.exports = (sequelize, DataTypes) => {
     attSpd: {
       type: DataTypes.FLOAT,
       allowNull: false,
-      validate: {
-        args: [1, 1],
-        msg: "attSpd must be a FLOAT value of one decimal"
-      }
     }
   }, {
     sequelize,

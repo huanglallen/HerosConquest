@@ -11,15 +11,13 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE",
         hooks: true
       });
+
     }
   }
   Monster.init({
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        max: 30
-      }
+      allowNull: false
     },
     hp: {
       type: DataTypes.INTEGER,
@@ -40,15 +38,11 @@ module.exports = (sequelize, DataTypes) => {
     attSpd: {
       type: DataTypes.FLOAT,
       allowNull: false,
-      validate: {
-        args: [1, 1],
-        msg: "attSpd must be a FLOAT value of one decimal"
-      }
     },
-    xp_drop: {
+    xpDrop: {
       type: DataTypes.INTEGER,
       allowNull: false
-    }
+    },
   }, {
     sequelize,
     modelName: 'Monster',
