@@ -16,6 +16,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route />
         </Switch>
       )}
     </>

@@ -19,6 +19,12 @@ module.exports = {
       },
       monsterId: {
         type: Sequelize.INTEGER
+      },
+      heroHp: {
+        type: Sequelize.INTEGER
+      },
+      monsterHp: {
+        type: Sequelize.INTEGER
       }
     }, options);
   },
