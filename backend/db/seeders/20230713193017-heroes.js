@@ -14,7 +14,7 @@ module.exports = {
       {
         ownerId: 2,
         name: 'codeman',
-        class: 'mage',
+        heroClass: 'mage',
         level: 16,
         xp: 8,
         hp: 35,
@@ -26,7 +26,7 @@ module.exports = {
       {
         ownerId: 2,
         name: 'FoxLover',
-        class: 'naruto',
+        heroClass: 'naruto',
         level: 16,
         xp: 18,
         hp: 999,
@@ -42,7 +42,7 @@ module.exports = {
     options.tableName = 'Heros';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      class: { [Op.in]: ['mage', 'naruto']}
+      heroClass: { [Op.in]: ['mage', 'naruto']}
     }, {});
   }
 };

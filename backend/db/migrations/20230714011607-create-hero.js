@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING(12),
         allowNull: false
       },
-      class: {
+      heroClass: {
         type: Sequelize.STRING,
         allowNull: false
       },

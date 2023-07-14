@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         max: 12
       }
     },
-    class: {
+    heroClass: {
       type: DataTypes.STRING,
       allowNull: false
     },
