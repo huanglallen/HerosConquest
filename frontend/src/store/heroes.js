@@ -77,17 +77,33 @@ const initialState = {
 };
 
 const heroesReducer = (state = initialState, action) => {
+    let heroState = {};
+    let playing = {};
     switch(action.type) {
         case GET_USERS_HEROES:
-            const heroState = {...state, userHeroes: {}}
+            heroState = {...state, userHeroes: { ...state.userHeroes }};
             action.payload.userHeroes.forEach(hero => {
                 heroState.userHeroes[hero.id] = hero
             });
-            console.log("REDUCER", action.payload)
             return heroState;
+        case CREATE_HERO:
+            return {
+                ...state,
+                userHeroes: action.payload
+            };
+        case UPDATE_HERO:
+            return {
+                ...state,
+                userHeroes: action.payload
+            };
+        case DELETE_HERO:
+            return {
+                ...state,
+                userHeroes: state.userHeroes.filter(hero => hero.id !== action.payload)
+            };
         default:
             return state;
-    }
+    };
 };
 
 export default heroesReducer;

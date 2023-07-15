@@ -18,7 +18,7 @@ const HeroesIndex = () => {
     return (
         <div className="heroes-wrapper">
             <h2>Select Your Hero</h2>
-            {userHeroes.map(hero => {
+            {userHeroes && userHeroes.map(hero => {
                 return <SingleHero key={hero.id} hero={hero} />
             })}
         </div>
