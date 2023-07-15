@@ -10,11 +10,9 @@ const loadUserHeroes = heroes => ({
 //THUNK
 
 export const getUserHeroes = userId => async (dispatch) => {
-    const res = csrfFetch(`/api/heroes/${userId}`);
-
+    const res = await csrfFetch(`/api/heroes/${userId}`);
     if(res.ok) {
         const data = await res.json();
-        console.log('[getUserHeroes_THUNK]', data)
         dispatch(loadUserHeroes(data))
     }
 };

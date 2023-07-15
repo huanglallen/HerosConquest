@@ -1,3 +1,15 @@
 .hidden {
     display: none;
 }
+
+#nav {
+    display: flex;
+    background-color: lightblue;
+}
+
+.navitems {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 18px;
+}

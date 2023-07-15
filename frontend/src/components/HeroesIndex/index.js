@@ -3,22 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserHeroes } from "../../store/heroes";
 import SingleHero from "../SingleHero";
 import { useParams } from "react-router-dom";
+import "./HeroesIndex.css";
 
 const HeroesIndex = () => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user);
-    console.log("[userID]", user)
     const { userId } = useParams();
-    const userHeroes = useSelector(state => state.heroes.userHeroes);
-    console.log("[USER_HEROES]", userHeroes)
+    const heroes = useSelector(state => state.heroes);
 
     useEffect(() => {
         dispatch(getUserHeroes(userId))
     }, [dispatch, userId]);
 
+    if(!heroes) return null;
+
     return (
         <div className="heroes-wrapper">
-            {userHeroes.map(hero => {
+            <h2>Select Your Hero</h2>
+            {heroes && Object.values(heroes.userHeroes).map(hero => {
                 return <SingleHero key={hero.id} hero={hero} />
             })}
         </div>
