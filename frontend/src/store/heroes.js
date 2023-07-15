@@ -1,10 +1,16 @@
 import { csrfFetch } from "./csrf"
 
 const GET_USERS_HEROES = 'heroes/GET_USERS_HEROES';
+const CREATE_HERO = 'heroes/CREATE_HERO';
 
 const loadUserHeroes = heroes => ({
     type: GET_USERS_HEROES,
     payload: heroes
+});
+
+const makeHero = hero => ({
+    type: CREATE_HERO,
+    payload: hero
 });
 
 //THUNK
@@ -15,6 +21,19 @@ export const getUserHeroes = userId => async (dispatch) => {
         const data = await res.json();
         dispatch(loadUserHeroes(data))
     }
+};
+
+export const createHero = hero => async dispatch => {
+    const res = await csrfFetch(`/api/heroes/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(hero)
+    });
+    if(res.ok) {
+        const data = res.json();
+        dispatch(makeHero(data));
+        return data;
+    };
 };
 
 //REDUCER

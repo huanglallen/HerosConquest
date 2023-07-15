@@ -10,7 +10,7 @@ router.get('/:userId', async (req, res) => {
     const userHeroes = await Hero.findAll({
         where: { ownerId: userId }
     });
-    console.log('[userHeroes]', userHeroes)
+
     //err handler
     if(!userHeroes.length) {
         return res.json({UserHeroes: []})
