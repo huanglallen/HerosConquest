@@ -2,6 +2,8 @@ import { csrfFetch } from "./csrf"
 
 const GET_USERS_HEROES = 'heroes/GET_USERS_HEROES';
 const CREATE_HERO = 'heroes/CREATE_HERO';
+const UPDATE_HERO = 'heroes/UPDATE_HERO';
+const DELETE_HERO = 'heroes/DELETE_HERO';
 
 const loadUserHeroes = heroes => ({
     type: GET_USERS_HEROES,
@@ -11,6 +13,16 @@ const loadUserHeroes = heroes => ({
 const makeHero = hero => ({
     type: CREATE_HERO,
     payload: hero
+});
+
+const editHero = hero => ({
+    type: UPDATE_HERO,
+    payload: hero
+});
+
+const removeHero = heroId => ({
+    type: DELETE_HERO,
+    payload: heroId
 });
 
 //THUNK
@@ -35,6 +47,28 @@ export const createHero = hero => async dispatch => {
         return data;
     };
 };
+
+export const updateHero = hero => async dispatch => {
+    const res = await csrfFetch(`/api/heroes/${hero.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(hero)
+    });
+    if(res.ok) {
+        const data = await res.json();
+        dispatch(editHero(data));
+        return data;
+    }
+};
+
+export const deleteHero = heroId => async dispatch => {
+    const res = await csrfFetch(`/api/heroes/${heroId}`, {
+        method: 'DELETE'
+    });
+    if(res.ok) {
+        dispatch(removeHero(heroId));
+    }
+}
 
 //REDUCER
 const initialState = {
