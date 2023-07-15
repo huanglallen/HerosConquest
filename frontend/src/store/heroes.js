@@ -9,17 +9,34 @@ const loadUserHeroes = heroes => ({
 
 //THUNK
 
-export const getUserHeroes = userId => async dispatch => {
+export const getUserHeroes = userId => async (dispatch) => {
     const res = csrfFetch(`/api/heroes/${userId}`);
 
     if(res.ok) {
         const data = await res.json();
+        console.log('[getUserHeroes_THUNK]', data)
         dispatch(loadUserHeroes(data))
     }
 };
 
 //REDUCER
-
 const initialState = {
-    userHeroes: []
-}
+    userHeroes: {},
+    playing: {}
+};
+
+const heroesReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case GET_USERS_HEROES:
+            const heroState = {...state, userHeroes: {}}
+            action.payload.userHeroes.forEach(hero => {
+                heroState.userHeroes[hero.id] = hero
+            });
+            console.log("REDUCER", action.payload)
+            return heroState;
+        default:
+            return state;
+    }
+};
+
+export default heroesReducer;

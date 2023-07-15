@@ -4,20 +4,19 @@ const { Op } = require('sequelize')
 const { requireAuth } = require('../../utils/auth');
 
 const { User, Hero } = require('../../db/models');
-const { route } = require('./heroes');
 
 router.get('/:userId', async (req, res) => {
     const { userId } = req.params;
     const userHeroes = await Hero.findAll({
         where: { ownerId: userId }
     });
-
+    console.log('userHeroes:', userHeroes)
     //err handler
     if(!userHeroes.length) {
         return res.json({UserHeroes: []})
     };
 
-    return res.json({UserHeroes: userHeroes})
+    return res.json({userHeroes})
 });
 
 router.post('/create', async (req, res) => {
@@ -50,7 +49,7 @@ router.post('/create', async (req, res) => {
     return res.status(201).json(newHero)
 });
 
-route.put('/:heroId', async (req, res) => {
+router.put('/:heroId', async (req, res) => {
     const { name, heroClass, level, xp, hp, att, def, spd, attSpd } = req.body;
     const { heroId } = req.params;
     const hero = await Hero.findByPk(heroId);
@@ -67,7 +66,7 @@ route.put('/:heroId', async (req, res) => {
             message: "Bad Request",
             errors
         });
-    }
+    };
 
     const updatedHero = {
         ownerId: req.user.id,
@@ -85,7 +84,7 @@ route.put('/:heroId', async (req, res) => {
     return res.json(hero)
 });
 
-route.delete('/:heroId', async (req, res) => {
+router.delete('/:heroId', async (req, res) => {
     const { heroId } = req.params;
     const hero = await Hero.findByPk(heroId);
 
@@ -96,6 +95,6 @@ route.delete('/:heroId', async (req, res) => {
 
     await hero.destroy();
     return res.json({ message: "Successfully deleted" });
-})
+});
 
 module.exports = router;
