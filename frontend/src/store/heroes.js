@@ -90,9 +90,14 @@ const heroesReducer = (state = initialState, action) => {
                 userHeroes: action.payload
             };
         case UPDATE_HERO:
+            const updatedHero = action.payload;
+            const updatedUserHeroes = {
+              ...state.userHeroes,
+              [updatedHero.id]: updatedHero
+            };
             return {
-                ...state,
-                userHeroes: action.payload
+              ...state,
+              userHeroes: updatedUserHeroes
             };
         case DELETE_HERO:
             return {

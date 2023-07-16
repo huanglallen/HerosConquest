@@ -53,6 +53,7 @@ router.put('/:heroId', async (req, res) => {
     const { name, heroClass, level, xp, hp, att, def, spd, attSpd } = req.body;
     const { heroId } = req.params;
     const hero = await Hero.findByPk(heroId);
+    const errors = {};
 
     //error handler
     if(!hero) {

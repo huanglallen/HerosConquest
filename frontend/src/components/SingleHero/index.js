@@ -6,7 +6,7 @@ const SingleHero = ({ hero, classImg }) => {
     //modal items
     const { setModalContent } = useModal();
     const openUpdateNameModal = () => {
-        setModalContent(<UpdateNameModal />)
+        setModalContent(<UpdateNameModal hero={hero} />)
     };
 
     return (
