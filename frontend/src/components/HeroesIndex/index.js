@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import { getUserHeroes } from "../../store/heroes";
 import SingleHero from "../SingleHero";
-import { useParams } from "react-router-dom";
 import "./HeroesIndex.css";
+
 
 const HeroesIndex = () => {
     const dispatch = useDispatch();
@@ -21,8 +22,9 @@ const HeroesIndex = () => {
             {userHeroes && userHeroes.map(hero => {
                 return <SingleHero key={hero.id} hero={hero} />
             })}
+            <Link to="/heroes/create">Create New Hero</Link>
         </div>
-    )
+    );
 };
 
 export default HeroesIndex;

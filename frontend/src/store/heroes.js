@@ -72,13 +72,11 @@ export const deleteHero = heroId => async dispatch => {
 
 //REDUCER
 const initialState = {
-    userHeroes: {},
-    playing: {}
+    userHeroes: {}
 };
 
 const heroesReducer = (state = initialState, action) => {
     let heroState = {};
-    let playing = {};
     switch(action.type) {
         case GET_USERS_HEROES:
             heroState = {...state, userHeroes: { ...state.userHeroes }};

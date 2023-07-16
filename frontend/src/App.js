@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HeroesIndex from "./components/HeroesIndex";
+import CreateHeroForm from "./components/CreateHeroForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/heroes/create' component={CreateHeroForm}/>
           <Route exact path='/heroes/:userId' component={HeroesIndex}/>
         </Switch>
       )}
