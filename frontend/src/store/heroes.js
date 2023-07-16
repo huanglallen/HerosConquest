@@ -100,9 +100,10 @@ const heroesReducer = (state = initialState, action) => {
               userHeroes: updatedUserHeroes
             };
         case DELETE_HERO:
+            const { [action.payload]: deletedHero, ...remainingHeroes } = state.userHeroes;
             return {
-                ...state,
-                userHeroes: state.userHeroes.filter(hero => hero.id !== action.payload)
+              ...state,
+              userHeroes: remainingHeroes
             };
         default:
             return state;
