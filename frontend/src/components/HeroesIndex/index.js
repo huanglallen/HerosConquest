@@ -19,9 +19,11 @@ const HeroesIndex = () => {
     return (
         <div className="heroes-wrapper">
             <h2>Select Your Hero</h2>
-            {userHeroes && userHeroes.map(hero => {
-                return <SingleHero key={hero.id} hero={hero} />
-            })}
+            <div className="heroes-holder">
+                {userHeroes && userHeroes.map(hero => {
+                    return <SingleHero key={hero.id} hero={hero} />
+                })}
+            </div>
             <Link to="/heroes/create">Create New Hero</Link>
         </div>
     );
