@@ -8,7 +8,7 @@ const NavButtons = () => {
     return (
         <div className="NavButtons">
             <div>Home</div>
-            <NavLink to={`/heroes/${sessionUser.id}`}>Heroes</NavLink>
+            <NavLink to={`/heroes/all/${sessionUser.id}`}>Heroes</NavLink>
             <div>Battles</div>
         </div>
     );
