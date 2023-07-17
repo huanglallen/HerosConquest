@@ -1,3 +1,18 @@
 .NavButtons {
     background-color: var(--dark);
+    display: flex;
+    flex-direction: column;
+
+}
+
+.NavButtons > div {
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+    font-size: 24px;
+    border-bottom: 2px solid whitesmoke;
+}
+
+.NavButtons > div:hover {
+    cursor: pointer;
 }
