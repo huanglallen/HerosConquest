@@ -5,12 +5,13 @@
 
 }
 
-.NavButtons > div {
+.NavButtons > * {
     display: flex;
     justify-content: center;
     padding: 25px;
     font-size: 24px;
     border-bottom: 2px solid whitesmoke;
+    color: white;
 }
 
 .NavButtons > div:hover {

@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { NavLink } from "react-router-dom";
 import "./NavButtons.css";
 
 const NavButtons = () => {
+    const sessionUser = useSelector(state => state.session.user);
 
     return (
         <div className="NavButtons">
             <div>Home</div>
-            <div>Heroes</div>
+            <NavLink to={`/heroes/${sessionUser.id}`}>Heroes</NavLink>
             <div>Battles</div>
         </div>
     );

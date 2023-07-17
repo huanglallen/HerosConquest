@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: column;
     width: 250px;
-    height: 250px;
+    /* height: 250px; */
     background-color: black;
     border-top: 5px rgb(137, 25, 25) solid;
-    margin: auto 1rem;
+    margin: 1rem;
+    border-radius: 10px;
 }
 
 .singlehero-header {
@@ -17,28 +18,27 @@
 }
 
 .singlehero-body {
-    width: max-content;
+    display: flex;
+    justify-content: center;
 }
 
 .singlehero-body > img {
     display: flex;
     justify-content: center;
-    width: 220px;
-    height: 190px;
+    width: 215px;
+    height: 180px;
 }
 
 .singlehero-footer {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    padding: 10px;
 }
-
-.singlehero-footer > button {
-    outline: none;
-}
-
 
 .fa-pen-to-square, .fa-trash-can {
     outline: none;
     color: whitesmoke;
+    padding: 5px;
+    /* margin: 5px; */
 }

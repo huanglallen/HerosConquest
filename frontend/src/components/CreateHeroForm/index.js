@@ -41,7 +41,7 @@ const CreateHeroForm = () => {
 
     return (
         <div className="createhero-wrapper">
-            <h2>Create Your Hero</h2>
+            <h2 className="createhero-header">Create Your Hero</h2>
             <div className="createhero-box">
                 <div className="createhero-left">
                     <div className="createhero-name">
