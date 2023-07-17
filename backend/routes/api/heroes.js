@@ -3,7 +3,17 @@ const router = express.Router();
 const { Op } = require('sequelize')
 const { requireAuth } = require('../../utils/auth');
 
-const { User, Hero } = require('../../db/models');
+const { Hero, Playing } = require('../../db/models');
+
+router.get('/playing/:heroId', async (req, res) => {
+    const { heroId } = req.params;
+    const playingHero = await Playing.findOne({
+        where: { heroId: heroId }
+    });
+    if(!playingHero) return res.json({Playing: []});
+
+    return res.json({playingHero});
+});
 
 router.get('/:userId', async (req, res) => {
     const { userId } = req.params;
@@ -13,7 +23,7 @@ router.get('/:userId', async (req, res) => {
 
     //err handler
     if(!userHeroes.length) {
-        return res.json({UserHeroes: []})
+        return res.json({UserHeroes: []});
     };
 
     return res.json({userHeroes})
@@ -84,6 +94,18 @@ router.put('/:heroId', async (req, res) => {
     await hero.update(updatedHero);
     return res.json(hero)
 });
+
+router.delete('/playing/:heroId', async (req, res) => {
+    const { heroId } = req.params;
+    const playing = await Playing.findByPk(heroId);
+
+    if(!playing) {
+        return res.status(404).json({message: "No hero is currently being played"});
+    };
+
+    await playing.destroy();
+    return res.json({ message: "Successfully deleted" });
+})
 
 router.delete('/:heroId', async (req, res) => {
     const { heroId } = req.params;
