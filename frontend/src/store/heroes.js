@@ -5,6 +5,9 @@ const CREATE_HERO = 'heroes/CREATE_HERO';
 const UPDATE_HERO = 'heroes/UPDATE_HERO';
 const DELETE_HERO = 'heroes/DELETE_HERO';
 
+const CREATE_PLAYING = 'playing/CREATE_PLAYING';
+const DELETE_PLAYING = 'playing/DELETE_PLAYING';
+
 const loadUserHeroes = heroes => ({
     type: GET_USERS_HEROES,
     payload: heroes
@@ -23,6 +26,16 @@ const editHero = hero => ({
 const removeHero = heroId => ({
     type: DELETE_HERO,
     payload: heroId
+});
+
+const makePlaying = playing => ({
+    type: CREATE_PLAYING,
+    payload: playing
+});
+
+const removePlaying = playingId => ({
+    type: DELETE_PLAYING,
+    payload: playingId
 });
 
 //THUNK
@@ -68,11 +81,34 @@ export const deleteHero = heroId => async dispatch => {
     if(res.ok) {
         dispatch(removeHero(heroId));
     }
-}
+};
+
+export const createPlaying = playing => async dispatch => {
+    const res = await csrfFetch(`/api/heroes/playing`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(playing)
+    });
+    if(res.ok) {
+        const data = await res.json();
+        dispatch(makePlaying(data));
+        return data;
+    };
+};
+
+export const deletePlaying = playingId => async dispatch => {
+    const res = await csrfFetch(`/api/heroes/${playingId}`, {
+        method: 'DELETE'
+    });
+    if(res.ok) {
+        dispatch(removePlaying(playingId));
+    };
+};
 
 //REDUCER
 const initialState = {
-    userHeroes: {}
+    userHeroes: {},
+    playing: {}
 };
 
 const heroesReducer = (state = initialState, action) => {
@@ -100,11 +136,19 @@ const heroesReducer = (state = initialState, action) => {
               userHeroes: updatedUserHeroes
             };
         case DELETE_HERO:
-            const { [action.payload]: deletedHero, ...remainingHeroes } = state.userHeroes;
+            const { [action.payload]: deletedHero, ...remainingHeroes } = state.heroes.userHeroes;
             return {
               ...state,
               userHeroes: remainingHeroes
             };
+        case CREATE_PLAYING:
+            return {
+                ...state,
+                playing: action.payload
+            };
+        case DELETE_PLAYING:
+            const {[action.payload]: deletedPlaying, ...remainingPlaying } = state.heroes.playing;
+            return { ...state, playing:{...remainingPlaying}}
         default:
             return state;
     };

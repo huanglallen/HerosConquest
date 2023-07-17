@@ -5,15 +5,15 @@ const { requireAuth } = require('../../utils/auth');
 
 const { Hero, Playing } = require('../../db/models');
 
-router.get('/playing/:heroId', async (req, res) => {
-    const { heroId } = req.params;
-    const playingHero = await Playing.findOne({
-        where: { heroId: heroId }
-    });
-    if(!playingHero) return res.json({Playing: []});
+// router.get('/playing/:heroId', async (req, res) => {
+//     const { heroId } = req.params;
+//     const playingHero = await Playing.findOne({
+//         where: { heroId: heroId }
+//     });
+//     if(!playingHero) return res.json({Playing: []});
 
-    return res.json({playingHero});
-});
+//     return res.json({playingHero});
+// });
 
 router.get('/:userId', async (req, res) => {
     const { userId } = req.params;
@@ -57,6 +57,20 @@ router.post('/create', async (req, res) => {
         attSpd
     });
     return res.status(201).json(newHero)
+});
+
+router.post('/playing', async (req, res) => {
+    const { heroId } = req.body;
+
+    if(!heroId) {
+        return res.status(500).json({
+            message: "Bad Request",
+            errors
+        });
+    };
+
+    const newPlaying = await Playing.create({heroId});
+    return res.status(201).json(newPlaying);
 });
 
 router.put('/:heroId', async (req, res) => {
