@@ -1,0 +1,14 @@
+.heroes-wrapper {
+    width: 100%;
+}
+
+.heroes-header {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+};
+
+.heroes-holder {
+    display: grid;
+    grid-template-rows: auto;
+};
