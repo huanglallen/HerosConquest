@@ -21,7 +21,7 @@ const HeroesIndex = () => {
             <h2>Select Your Hero</h2>
             <div className="heroes-holder">
                 {userHeroes && userHeroes.map(hero => {
-                    return <SingleHero key={hero.id} hero={hero} />
+                    return <SingleHero key={hero.id} hero={hero} heroClass={hero.heroClass} />
                 })}
             </div>
             <Link to="/heroes/create">Create New Hero</Link>

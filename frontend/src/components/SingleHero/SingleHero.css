@@ -1,0 +1,26 @@
+#singlehero-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: black
+};
+
+.singlehero-header {
+    display: flex;
+    background-color: black;
+    color: blue
+};
+
+.singlehero-body {
+    width: max-content;
+}
+
+.singlehero-body > img {
+    width: 200px;
+    height: 190px;
+};
+
+.singlehero-footer {
+    width: 100%;
+    display: flex;
+}

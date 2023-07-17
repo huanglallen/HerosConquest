@@ -7,6 +7,12 @@
     background-color: lightblue;
 }
 
+#nav-left {
+    display: flex;
+    background-color: beige;
+    width: 200px;
+}
+
 .navitems {
     display: flex;
     width: 100%;

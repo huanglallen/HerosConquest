@@ -1,9 +1,10 @@
 import { useModal } from "../../context/Modal";
 import UpdateNameModal from "./UpdateNameModal";
 import DeleteHeroModal from "./DeleteHeroModal";
+import { portraits } from "../../hooks/heroImgs";
 import "./SingleHero.css";
 
-const SingleHero = ({ hero, classImg }) => {
+const SingleHero = ({ hero, heroClass }) => {
     //modal items
     const { setModalContent } = useModal();
     const openUpdateNameModal = () => {
@@ -14,18 +15,20 @@ const SingleHero = ({ hero, classImg }) => {
     };
 
     return (
-        <div className="singlehero-wrapper">
-            <div className="singlehero-footer">
+        <div id="singlehero-wrapper">
+            <div className="singlehero-header">
                 <p>{hero.name}</p>
-                <p>{hero.level}</p>
+                <p>lvl {hero.level}</p>
             </div>
-            <div>Class Portrait Here</div>
-            <button onClick={openUpdateNameModal}>
-                updateName icon
-            </button>
-            <button onClick={openDeleteHeroModal}>
-                deleteHero icon
-            </button>
+            <div className="singlehero-body">{portraits(heroClass)}</div>
+            <div className="singlehero-footer">
+                <button onClick={openUpdateNameModal}>
+                    update
+                </button>
+                <button onClick={openDeleteHeroModal}>
+                    delete
+                </button>
+            </div>
         </div>
     );
 };
