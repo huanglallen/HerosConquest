@@ -22,12 +22,12 @@ const SingleHero = ({ hero, heroClass }) => {
             </div>
             <div className="singlehero-body">{portraits(heroClass)}</div>
             <div className="singlehero-footer">
-                <button onClick={openUpdateNameModal}>
+                <div onClick={openUpdateNameModal}>
                 <i className="fa-solid fa-pen-to-square"/>
-                </button>
-                <button onClick={openDeleteHeroModal}>
+                </div>
+                <div onClick={openDeleteHeroModal}>
                     <i className="fa-solid fa-trash-can"/>
-                </button>
+                </div>
             </div>
         </div>
     );

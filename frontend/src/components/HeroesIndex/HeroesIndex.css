@@ -6,9 +6,18 @@
     display: flex;
     justify-content: center;
     margin: 20px auto;
-};
+}
 
 .heroes-holder {
     display: grid;
-    grid-template-rows: auto;
-};
+    grid-template-columns: 1fr 1fr 1fr;
+    border: solid red 1px;
+    height: 100%;
+    margin: auto 1rem;
+}
+
+.heroes-create {
+    height: 250px;
+    width: 250px;
+    background-color: lightblue;
+}
