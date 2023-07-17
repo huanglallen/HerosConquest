@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import HeroesIndex from "./components/HeroesIndex";
 import CreateHeroForm from "./components/CreateHeroForm";
 import LandingPage from "./components/LandingPage";
+import Layout from "./components/Layout";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,11 +17,13 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
         <Switch>
-          <Route exact path='/heroes/create' component={CreateHeroForm}/>
-          <Route exact path='/heroes/:userId' component={HeroesIndex}/>
+          <Layout isLoaded={isLoaded}>
+            <Route exact path='/heroes/create' component={CreateHeroForm}/>
+            <Route exact path='/heroes/:userId' component={HeroesIndex}/>
+          </Layout>
           <Route exact path='/' component={LandingPage}/>
         </Switch>
       )}

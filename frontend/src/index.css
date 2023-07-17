@@ -1,5 +1,7 @@
 /* TODO Add site wide styles */
 :root {
+    --dark: #1e2124;
+    --medium: #282b30;
     background-color: #424549;
     color: white;
     width: 100%;
