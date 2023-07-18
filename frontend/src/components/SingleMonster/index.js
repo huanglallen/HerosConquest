@@ -1,4 +1,4 @@
-
+import portraits from "../../hooks/portraits";
 import "./SingleMonster.css";
 
 const SingleMonster = ({ monster }) => {
@@ -8,7 +8,7 @@ const SingleMonster = ({ monster }) => {
                 <p>{monster.name}</p>
             </div>
             <div className="singlemonster-body">
-                image here
+                {portraits(monster.name)}
             </div>
             <div className="singlemonster-footer">
                 <div>

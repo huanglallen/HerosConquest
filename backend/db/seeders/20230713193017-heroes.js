@@ -13,8 +13,8 @@ module.exports = {
     await Hero.bulkCreate([
       {
         ownerId: 2,
-        name: 'codeman',
-        heroClass: 'mage',
+        name: 'caster',
+        heroClass: 'Mage',
         level: 16,
         xp: 8,
         hp: 35,
@@ -25,9 +25,9 @@ module.exports = {
       },
       {
         ownerId: 2,
-        name: 'FoxLover',
-        heroClass: 'naruto',
-        level: 16,
+        name: 'AngerIssues',
+        heroClass: 'Berserker',
+        level: 92,
         xp: 18,
         hp: 999,
         att: 999,
@@ -42,7 +42,7 @@ module.exports = {
     options.tableName = 'Heros';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      heroClass: { [Op.in]: ['mage', 'naruto']}
+      ownerId: { [Op.in]: [2]}
     }, {});
   }
 };

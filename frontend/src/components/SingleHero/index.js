@@ -4,13 +4,13 @@ import { useModal } from "../../context/Modal";
 import UpdateNameModal from "./UpdateNameModal";
 import DeleteHeroModal from "./DeleteHeroModal";
 import { createPlaying } from "../../store/heroes";
-import { portraits } from "../../hooks/heroImgs";
+import portraits from "../../hooks/portraits";
 import "./SingleHero.css";
 
 const SingleHero = ({ hero }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const userId = useSelector(state => state.session.user.id)
+    const user = useSelector(state => state.session.user)
 
     //modal items
     const { setModalContent } = useModal();
@@ -22,12 +22,14 @@ const SingleHero = ({ hero }) => {
     };
     const handlePlay = () => {
         const newPlaying = {
-            userId,
+            userId: user.id,
             heroId: hero.id
         };
         dispatch(createPlaying(newPlaying));
         history.push('/heroes/playing');
     };
+
+    if(!user) return null;
 
     return (
         <div id="singlehero-wrapper">

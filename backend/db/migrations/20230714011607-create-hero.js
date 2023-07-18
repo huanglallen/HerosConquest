@@ -19,7 +19,7 @@ module.exports = {
         allowNull: false
       },
       name: {
-        type: Sequelize.STRING(12),
+        type: Sequelize.STRING(15),
         allowNull: false
       },
       heroClass: {

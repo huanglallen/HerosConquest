@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     width: 250px;
-    /* height: 250px; */
+    height: 270px;
     background-color: black;
-    border-top: 5px rgb(137, 25, 25) solid;
+    border-top: 5px var(--hero) solid;
     margin: 1rem;
     border-radius: 10px;
 }
@@ -15,6 +15,7 @@
     justify-content: space-between;
     padding: 10px;
     font-size: 18px;
+    height: 40px;
 }
 
 .singlehero-body {
@@ -30,7 +31,7 @@
 }
 
 .singlehero-footer {
-    width: 100%;
+    height: 46px;
     display: flex;
     justify-content: flex-end;
     padding: 10px;

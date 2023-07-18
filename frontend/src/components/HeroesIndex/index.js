@@ -26,6 +26,8 @@ const HeroesIndex = () => {
         dispatch(getUserHeroes(userId));
     }, [dispatch, userId]);
 
+    if(!userId) return null;
+
     return (
         <div className="heroes-wrapper">
             <h2 className="heroes-header">Select Your Hero:</h2>

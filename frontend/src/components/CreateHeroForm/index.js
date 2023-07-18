@@ -56,17 +56,17 @@ const CreateHeroForm = () => {
                         <h3>Choose your class</h3>
                         <div className="createhero-class-holder">
                             <div
-                            onClick={e => setHeroClass('knight')}
+                            onClick={e => setHeroClass('Knight')}
                             >knight holder</div>
                             <div
-                            onClick={e => setHeroClass('hunter')}
+                            onClick={e => setHeroClass('Hunter')}
                             >hunter holder</div>
                             <div
-                            onClick={e => setHeroClass('mage')}
+                            onClick={e => setHeroClass('Mage')}
                             >mage holder</div>
                             <div
-                            onClick={e => setHeroClass('naruto')}
-                            >naruto holder</div>
+                            onClick={e => setHeroClass('Berserker')}
+                            >Berserker holder</div>
                         </div>
                     </div>
                 </div>

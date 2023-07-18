@@ -12,7 +12,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await Monster.bulkCreate([
       {
-        name: 'goblin',
+        name: 'zombie',
         hp: 10,
         att: 1,
         def: 1,
