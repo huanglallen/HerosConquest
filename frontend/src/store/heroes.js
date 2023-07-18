@@ -113,7 +113,7 @@ export const createPlaying = playing => async dispatch => {
 };
 
 export const deletePlaying = playingId => async dispatch => {
-    const res = await csrfFetch(`/api/heroes/${playingId}`, {
+    const res = await csrfFetch(`/api/heroes/playing/${playingId}`, {
         method: 'DELETE'
     });
     if(res.ok) {
