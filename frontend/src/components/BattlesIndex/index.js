@@ -23,8 +23,8 @@ const BattlesIndex = () => {
                 {monsters && monsters.map(monster => {
                     return (
                         <SingleMonster key={monster.id} monster={monster} />
-                    );
-                })};
+                    )
+                })}
             </div>
         </div>
     );

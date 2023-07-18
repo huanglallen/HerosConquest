@@ -1,0 +1,9 @@
+.singlemonster-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 1rem;
+    border-radius: 10px;
+    background-color: black;
+    border: 1px red solid;
+}
