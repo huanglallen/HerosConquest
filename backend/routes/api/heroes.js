@@ -5,15 +5,15 @@ const { requireAuth } = require('../../utils/auth');
 
 const { Hero, Playing } = require('../../db/models');
 
-// router.get('/playing/:heroId', async (req, res) => {
-//     const { heroId } = req.params;
-//     const playingHero = await Playing.findOne({
-//         where: { heroId: heroId }
-//     });
-//     if(!playingHero) return res.json({Playing: []});
+router.get('/playing/:userId', async (req, res) => {
+    const { userId } = req.params;
+    const playingHero = await Playing.findOne({
+        where: { userId: userId }
+    });
+    if(!playingHero) return res.json({Playing: []});
 
-//     return res.json({playingHero});
-// });
+    return res.json({playingHero});
+});
 
 router.get('/:userId', async (req, res) => {
     const { userId } = req.params;
@@ -60,7 +60,7 @@ router.post('/create', async (req, res) => {
 });
 
 router.post('/playing', async (req, res) => {
-    const { heroId } = req.body;
+    const { userId, heroId } = req.body;
 
     const errors = {};
     if(!heroId) {
@@ -70,7 +70,7 @@ router.post('/playing', async (req, res) => {
         });
     };
 
-    const newPlaying = await Playing.create({heroId});
+    const newPlaying = await Playing.create({userId, heroId});
     return res.status(201).json(newPlaying);
 });
 

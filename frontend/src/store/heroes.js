@@ -5,6 +5,7 @@ const CREATE_HERO = 'heroes/CREATE_HERO';
 const UPDATE_HERO = 'heroes/UPDATE_HERO';
 const DELETE_HERO = 'heroes/DELETE_HERO';
 
+const LOAD_USER_PLAYINGS = 'playing/LOAD_PLAYINGS';
 const CREATE_PLAYING = 'playing/CREATE_PLAYING';
 const DELETE_PLAYING = 'playing/DELETE_PLAYING';
 
@@ -28,6 +29,11 @@ const removeHero = heroId => ({
     payload: heroId
 });
 
+const loadUserPlayings = playing => ({
+    type: LOAD_USER_PLAYINGS,
+    payload: playing
+})
+
 const makePlaying = playing => ({
     type: CREATE_PLAYING,
     payload: playing
@@ -44,7 +50,8 @@ export const getUserHeroes = userId => async (dispatch) => {
     const res = await csrfFetch(`/api/heroes/${userId}`);
     if(res.ok) {
         const data = await res.json();
-        dispatch(loadUserHeroes(data))
+        dispatch(loadUserHeroes(data));
+        return data;
     }
 };
 
@@ -83,6 +90,15 @@ export const deleteHero = heroId => async dispatch => {
     }
 };
 
+export const getUserPlayings = userId => async dispatch => {
+    const res = await csrfFetch(`/api/heroes/playing/${userId}`);
+    if(res.ok) {
+        const data = res.json();
+        dispatch(loadUserPlayings(data));
+        return data;
+    };
+};
+
 export const createPlaying = playing => async dispatch => {
     const res = await csrfFetch(`/api/heroes/playing`, {
         method: 'POST',
@@ -113,9 +129,13 @@ const initialState = {
 
 const heroesReducer = (state = initialState, action) => {
     let heroState = {};
+    let playingState = {};
     switch(action.type) {
         case GET_USERS_HEROES:
-            heroState = {...state, userHeroes: { ...state.userHeroes }};
+            heroState = {...state,
+                userHeroes: { ...state.userHeroes },
+                playing: { ...state.playing}
+            };
             action.payload.userHeroes.forEach(hero => {
                 heroState.userHeroes[hero.id] = hero
             });
@@ -141,6 +161,12 @@ const heroesReducer = (state = initialState, action) => {
               ...state,
               userHeroes: remainingHeroes
             };
+        case LOAD_USER_PLAYINGS:
+            playingState = {
+                ...state,
+                playing: { ...state.playing }
+            };
+            return playingState;
         case CREATE_PLAYING:
             return {
                 ...state,

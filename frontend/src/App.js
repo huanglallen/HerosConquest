@@ -22,7 +22,8 @@ function App() {
           <Layout isLoaded={isLoaded}>
             <Route exact path='/heroes/create' component={CreateHeroForm}/>
             <Route exact path='/heroes/playing' component={CurrentlyPlaying}/>
-            <Route exact path='/heroes/all/:userId' component={HeroesIndex}/>
+            <Route exact path='/heroes' component={HeroesIndex}/>
+            {/* <Route exact path='/heroes/all/:userId' component={HeroesIndex}/> */}
           </Layout>
           <Route exact path='/' component={LandingPage}/>
         </Switch>

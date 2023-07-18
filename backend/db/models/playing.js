@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Playing.belongsTo(models.User, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+        hooks: true
+      });
       Playing.belongsTo(models.Hero, {
         foreignKey: "heroId",
         onDelete: "CASCADE",
@@ -19,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Playing.init({
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     heroId: {
       type: DataTypes.INTEGER,
       allowNull: false

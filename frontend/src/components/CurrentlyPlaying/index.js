@@ -3,21 +3,28 @@ import { useHistory } from "react-router-dom";
 import { deletePlaying } from "../../store/heroes";
 import "./CurrentlyPlaying.css";
 
-const CurrentlyPlaying = (hero) => {
+const CurrentlyPlaying = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user)
+    const heroesObj = useSelector(state => state.heroes.userHeroes);
+    const userHeroes = Object.values(heroesObj);
     const playing = useSelector(state => state.heroes.playing);
-    const currPlaying = playing.find(play => play.heroId === hero.id);
+    const hero = userHeroes.find(hero => hero.id === playing.heroId)
+    // const currPlaying = playing.find(play => play.heroId === hero.id);
+
+    console.log("[HERO]", hero)
+
     const handleSwitch = () => {
-        dispatch(deletePlaying(currPlaying));
-        history.push(`/heroes/${user.id}`)
+        dispatch(deletePlaying(playing.id));
+        history.push(`/heroes`)
     };
+
+    if(!hero) return null;
 
     return (
         <div className="playing-wrapper">
             <h2 className="playing-header">Currently Playing As:</h2>
-            <div>{hero.name} level{hero.level}</div>
+            <div>{hero.name} level {hero.level}</div>
             <div onClick={handleSwitch}>Switch</div>
         </div>
     );

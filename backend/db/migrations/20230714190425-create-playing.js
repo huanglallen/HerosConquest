@@ -14,7 +14,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       heroId: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {
