@@ -25,7 +25,7 @@ const monstersReducer = (state = initialState, action) => {
     let monsterState = {};
     switch(action.type) {
         case GET_MONSTERS:
-            monsterState = {...state, ...state.monsters}
+            monsterState = {...state, monsters:{...state.monsters}}
             action.payload.monsters.forEach(monster => {
                 monsterState.monsters[monster.id] = monster
             });

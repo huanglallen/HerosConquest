@@ -7,7 +7,7 @@ import { createPlaying } from "../../store/heroes";
 import { portraits } from "../../hooks/heroImgs";
 import "./SingleHero.css";
 
-const SingleHero = ({ hero, heroClass }) => {
+const SingleHero = ({ hero }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const userId = useSelector(state => state.session.user.id)
@@ -35,7 +35,7 @@ const SingleHero = ({ hero, heroClass }) => {
                 <p>{hero.name}</p>
                 <p>lvl {hero.level}</p>
             </div>
-            <div className="singlehero-body">{portraits(heroClass)}</div>
+            <div className="singlehero-body">{portraits(hero.heroClass)}</div>
             <div className="singlehero-footer">
                 <div onClick={handlePlay}>Play Now</div>
                 <div onClick={openUpdateNameModal}>

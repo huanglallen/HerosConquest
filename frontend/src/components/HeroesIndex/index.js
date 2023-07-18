@@ -28,11 +28,11 @@ const HeroesIndex = () => {
 
     return (
         <div className="heroes-wrapper">
-            <h2 className="heroes-header">Select Your Hero</h2>
+            <h2 className="heroes-header">Select Your Hero:</h2>
                <div className="heroes-holder">
-                    {userHeroes && userHeroes.map(hero => {
-                        return <SingleHero key={hero.id} hero={hero} heroClass={hero.heroClass} />
-                    })}
+                    {userHeroes && userHeroes.map(hero => (
+                        <SingleHero key={hero.id} hero={hero} />
+                    ))}
                 <Link className="heroes-create" to="/heroes/create">Create New Hero</Link>
             </div>
         </div>

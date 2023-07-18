@@ -11,7 +11,7 @@ const NavButtons = () => {
         <div className="NavButtons">
             <NavLink to='/home'>Home</NavLink>
             <NavLink to={heroPlaying ? '/heroes/playing':'/heroes'}>Heroes</NavLink>
-            <div>Battles</div>
+            <NavLink to='/battles'>Battle</NavLink>
         </div>
     );
 };
