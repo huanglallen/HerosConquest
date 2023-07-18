@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMonsters } from "../../store/monsters";
 import SingleMonster from "../SingleMonster";
+import "./BattlesIndex.css";
 
 const BattlesIndex = () => {
     const dispatch = useDispatch();

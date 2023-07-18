@@ -11,11 +11,6 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE",
         hooks: true
       });
-      Hero.hasMany(models.Playing, {
-        foreignKey: "heroId",
-        onDelete: "CASCADE",
-        hooks: true
-      });
       Hero.belongsTo(models.User, {
         foreignKey: "ownerId"
       });

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { Battle, Hero, Monster, Playing } = require('../../db/models');
+const { Battle, Hero, Monster } = require('../../db/models');
 
 router.get('/:battleId', async (req, res) => {
     const { battleId } = req.params;

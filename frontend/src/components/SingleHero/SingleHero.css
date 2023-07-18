@@ -24,8 +24,6 @@
 }
 
 .singlehero-body > img {
-    display: flex;
-    justify-content: center;
     width: 215px;
     height: 180px;
 }

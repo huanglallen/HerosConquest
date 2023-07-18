@@ -5,10 +5,6 @@ const CREATE_HERO = 'heroes/CREATE_HERO';
 const UPDATE_HERO = 'heroes/UPDATE_HERO';
 const DELETE_HERO = 'heroes/DELETE_HERO';
 
-const LOAD_USER_PLAYINGS = 'playing/LOAD_PLAYINGS';
-const CREATE_PLAYING = 'playing/CREATE_PLAYING';
-const DELETE_PLAYING = 'playing/DELETE_PLAYING';
-
 const loadUserHeroes = heroes => ({
     type: GET_USERS_HEROES,
     payload: heroes
@@ -29,20 +25,6 @@ const removeHero = heroId => ({
     payload: heroId
 });
 
-const loadUserPlayings = playing => ({
-    type: LOAD_USER_PLAYINGS,
-    payload: playing
-})
-
-const makePlaying = playing => ({
-    type: CREATE_PLAYING,
-    payload: playing
-});
-
-const removePlaying = playingId => ({
-    type: DELETE_PLAYING,
-    payload: playingId
-});
 
 //THUNK
 
@@ -90,51 +72,18 @@ export const deleteHero = heroId => async dispatch => {
     }
 };
 
-export const getUserPlayings = userId => async dispatch => {
-    const res = await csrfFetch(`/api/heroes/playing/${userId}`);
-    if(res.ok) {
-        const data = res.json();
-        dispatch(loadUserPlayings(data));
-        return data;
-    };
-};
-
-export const createPlaying = playing => async dispatch => {
-    const res = await csrfFetch(`/api/heroes/playing`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(playing)
-    });
-    if(res.ok) {
-        const data = await res.json();
-        dispatch(makePlaying(data));
-        return data;
-    };
-};
-
-export const deletePlaying = playingId => async dispatch => {
-    const res = await csrfFetch(`/api/heroes/playing/${playingId}`, {
-        method: 'DELETE'
-    });
-    if(res.ok) {
-        dispatch(removePlaying(playingId));
-    };
-};
 
 //REDUCER
 const initialState = {
-    userHeroes: {},
-    playing: {}
+    userHeroes: {}
 };
 
 const heroesReducer = (state = initialState, action) => {
     let heroState = {};
-    let playingState = {};
     switch(action.type) {
         case GET_USERS_HEROES:
             heroState = {...state,
-                userHeroes: { ...state.userHeroes },
-                playing: { ...state.playing}
+                userHeroes: { ...state.userHeroes }
             };
             action.payload.userHeroes.forEach(hero => {
                 heroState.userHeroes[hero.id] = hero
@@ -161,21 +110,6 @@ const heroesReducer = (state = initialState, action) => {
               ...state,
               userHeroes: remainingHeroes
             };
-        case LOAD_USER_PLAYINGS:
-            playingState = {
-                ...state,
-                playing: { ...state.playing }
-            };
-            return playingState;
-        case CREATE_PLAYING:
-            return {
-                ...state,
-                playing: action.payload
-            };
-        case DELETE_PLAYING:
-            const {[action.payload]: deletedPlaying, ...remainingPlaying } = state.playing;
-            return { ...state, playing:{...remainingPlaying}}
-            // return { ...state, playing: {}}
         default:
             return state;
     };

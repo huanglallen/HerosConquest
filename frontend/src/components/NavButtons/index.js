@@ -5,12 +5,11 @@ import "./NavButtons.css";
 
 const NavButtons = () => {
     const sessionUser = useSelector(state => state.session.user);
-    const heroPlaying = useSelector(state => state.heroes.playing);
 
     return (
         <div className="NavButtons">
             <NavLink to='/home'>Home</NavLink>
-            <NavLink to={heroPlaying ? '/heroes/playing':'/heroes'}>Heroes</NavLink>
+            <NavLink to='/heroes'>Heroes</NavLink>
             <NavLink to='/battles'>Battle</NavLink>
         </div>
     );

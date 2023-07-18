@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import UpdateNameModal from "./UpdateNameModal";
 import DeleteHeroModal from "./DeleteHeroModal";
-import { createPlaying } from "../../store/heroes";
 import portraits from "../../hooks/portraits";
 import "./SingleHero.css";
 
@@ -20,14 +19,6 @@ const SingleHero = ({ hero }) => {
     const openDeleteHeroModal = () => {
         setModalContent(<DeleteHeroModal hero={hero} />)
     };
-    const handlePlay = () => {
-        const newPlaying = {
-            userId: user.id,
-            heroId: hero.id
-        };
-        dispatch(createPlaying(newPlaying));
-        history.push('/heroes/playing');
-    };
 
     if(!user) return null;
 
@@ -39,7 +30,6 @@ const SingleHero = ({ hero }) => {
             </div>
             <div className="singlehero-body">{portraits(hero.heroClass)}</div>
             <div className="singlehero-footer">
-                <div onClick={handlePlay}>Play Now</div>
                 <div onClick={openUpdateNameModal}>
                 <i className="fa-solid fa-pen-to-square"/>
                 </div>
