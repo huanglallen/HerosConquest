@@ -36,7 +36,7 @@ const CreateHeroForm = () => {
             attSpd: 2
         };
         dispatch(createHero(newHero));
-        history.push(`/heroes/${userId}`);
+        history.push(`/heroes`);
     };
 
     return (

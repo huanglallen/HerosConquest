@@ -11,9 +11,6 @@ const SingleMonster = ({ monster }) => {
                 {portraits(monster.name)}
             </div>
             <div className="singlemonster-footer">
-                <div>
-                    Battle btn
-                </div>
             </div>
         </div>
     );
