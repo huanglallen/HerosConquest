@@ -111,6 +111,7 @@ router.put('/:heroId', async (req, res) => {
 });
 
 router.delete('/playing/:playingId', async (req, res) => {
+    console.log("[hitting_DELETE]")
     const { playingId } = req.params;
     const playing = await Playing.findByPk(playingId);
 

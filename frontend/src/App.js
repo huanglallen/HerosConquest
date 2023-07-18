@@ -8,6 +8,7 @@ import LandingPage from "./components/LandingPage";
 import Layout from "./components/Layout";
 import CurrentlyPlaying from "./components/CurrentlyPlaying";
 import Home from "./components/Home";
+import BattlesIndex from "./components/BattlesIndex";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,8 +25,8 @@ function App() {
             <Route exact path='/heroes/create' component={CreateHeroForm}/>
             <Route exact path='/heroes/playing' component={CurrentlyPlaying}/>
             <Route exact path='/heroes' component={HeroesIndex}/>
+            <Route exact path='/battles' component={BattlesIndex}/>
             <Route exact path='/home' component={Home}/>
-            {/* <Route exact path='/heroes/all/:userId' component={HeroesIndex}/> */}
           </Layout>
           <Route exact path='/' component={LandingPage}/>
         </Switch>
