@@ -28,7 +28,7 @@ const removeHero = heroId => ({
 
 //THUNK
 
-export const getUserHeroes = userId => async (dispatch) => {
+export const getUserHeroes = userId => async dispatch => {
     const res = await csrfFetch(`/api/heroes/${userId}`);
     if(res.ok) {
         const data = await res.json();

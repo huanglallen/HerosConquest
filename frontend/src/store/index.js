@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import heroesReducer from "./heroes";
 import monstersReducer from "./monsters";
+import battlesReducer from "./battles";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   heroes: heroesReducer,
-  monsters: monstersReducer
+  monsters: monstersReducer,
+  battles: battlesReducer
 });
 
 let enhancer;
