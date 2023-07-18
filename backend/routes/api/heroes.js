@@ -110,9 +110,9 @@ router.put('/:heroId', async (req, res) => {
     return res.json(hero)
 });
 
-router.delete('/playing/:heroId', async (req, res) => {
-    const { heroId } = req.params;
-    const playing = await Playing.findByPk(heroId);
+router.delete('/playing/:playingId', async (req, res) => {
+    const { playingId } = req.params;
+    const playing = await Playing.findByPk(playingId);
 
     if(!playing) {
         return res.status(404).json({message: "No hero is currently being played"});

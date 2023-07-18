@@ -9,6 +9,7 @@ import "./HeroesIndex.css";
 
 const HeroesIndex = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const userId = useSelector(state => state.session.user.id);
     const heroesObj = useSelector(state => state.heroes.userHeroes);
     const userHeroes = Object.values(heroesObj);
@@ -16,27 +17,24 @@ const HeroesIndex = () => {
     const playings = Object.values(playingsObj);
     const currPlaying = playings.find(play => play.userId === userId);
     const currPlayingHero = currPlaying ? userHeroes.find(hero => hero.id === currPlaying.heroId) : null;
-    // console.log("[CURR_PLAYING]", currPlayingHero)
+
+    console.log('[playings]', playings)
 
 
     useEffect(() => {
-        dispatch(getUserPlayings(userId));
+        // dispatch(getUserPlayings(userId));
         dispatch(getUserHeroes(userId));
     }, [dispatch, userId]);
 
     return (
-        <div id="heroindex">
-            {currPlaying ? <CurrentlyPlaying hero={currPlayingHero} /> :
-                <div className="heroes-wrapper">
-                    <h2 className="heroes-header">Select Your Hero</h2>
-                    <div className="heroes-holder">
-                        {userHeroes && userHeroes.map(hero => {
-                            return <SingleHero key={hero.id} hero={hero} heroClass={hero.heroClass} />
-                        })}
-                        <Link className="heroes-create" to="/heroes/create">Create New Hero</Link>
-                    </div>
-                </div>
-            }
+        <div className="heroes-wrapper">
+            <h2 className="heroes-header">Select Your Hero</h2>
+               <div className="heroes-holder">
+                    {userHeroes && userHeroes.map(hero => {
+                        return <SingleHero key={hero.id} hero={hero} heroClass={hero.heroClass} />
+                    })}
+                <Link className="heroes-create" to="/heroes/create">Create New Hero</Link>
+            </div>
         </div>
     );
 };

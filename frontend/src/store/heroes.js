@@ -173,8 +173,9 @@ const heroesReducer = (state = initialState, action) => {
                 playing: action.payload
             };
         case DELETE_PLAYING:
-            const {[action.payload]: deletedPlaying, ...remainingPlaying } = state.heroes.playing;
+            const {[action.payload]: deletedPlaying, ...remainingPlaying } = state.playing;
             return { ...state, playing:{...remainingPlaying}}
+            // return { ...state, playing: {}}
         default:
             return state;
     };

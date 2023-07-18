@@ -10,9 +10,8 @@ const CurrentlyPlaying = () => {
     const userHeroes = Object.values(heroesObj);
     const playing = useSelector(state => state.heroes.playing);
     const hero = userHeroes.find(hero => hero.id === playing.heroId)
-    // const currPlaying = playing.find(play => play.heroId === hero.id);
 
-    console.log("[HERO]", hero)
+    console.log('[PLAYING!?]', playing)
 
     const handleSwitch = () => {
         dispatch(deletePlaying(playing.id));
