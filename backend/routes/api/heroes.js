@@ -62,6 +62,7 @@ router.post('/create', async (req, res) => {
 router.post('/playing', async (req, res) => {
     const { heroId } = req.body;
 
+    const errors = {};
     if(!heroId) {
         return res.status(500).json({
             message: "Bad Request",
