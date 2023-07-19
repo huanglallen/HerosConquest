@@ -20,7 +20,7 @@ const CreateHeroForm = () => {
         e.preventDefault();
         const errors = {};
         if(!name) errors.name = "Name is required";
-        if(name.length > 15) errors.name = "Name must be less than 15 characters";
+        if(name.length > 15) errors.name = "Name must be less than 16 characters";
         setvalidationErrors(errors);
 
         const newHero = {

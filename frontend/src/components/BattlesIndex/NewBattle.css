@@ -1,0 +1,44 @@
+.battles-title {
+    margin: 30px;
+}
+
+.battles-header {
+    display: flex;
+    height: 50%;
+}
+
+.battles-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.heroes-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.heromini-container {
+    border: 1px blue solid;
+    cursor: pointer;
+}
+
+.monster-holder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid red;
+    margin: 2rem;
+}
+
+.monstermini-container {
+    border: 1px greenyellow solid;
+    cursor: pointer;
+}
+
+.battles-create {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+    padding: 10px 5px;
+    width: 15%;
+    border: 2px solid black;
+}

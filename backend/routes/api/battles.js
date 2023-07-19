@@ -37,7 +37,7 @@ router.post('/create', async (req, res) => {
     return res.status(201).json(newBattle);
 });
 
-router.put('/:battleId', async (req, res) => {
+router.put('/fight/:battleId', async (req, res) => {
     const { heroId, monsterId, heroHp, monsterHp } = req.body;
     const { battleId } = req.params;
     const battle = Battle.findByPk(battleId);

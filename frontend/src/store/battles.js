@@ -51,7 +51,7 @@ export const createBattle = battle => async dispatch => {
 };
 
 export const updateBattle = battle => async dispatch => {
-    const res = await csrfFetch(`/api/battles/${battle.id}`, {
+    const res = await csrfFetch(`/api/battles/fight/${battle.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(battle)
@@ -93,6 +93,8 @@ const battlesReducer = (state = initialState, action) => {
             return { ...state, battles: action.payload };
         case DELETE_BATTLE:
             return { ...state, battles: {}};
+        default:
+            return state;
     };
 };
 
