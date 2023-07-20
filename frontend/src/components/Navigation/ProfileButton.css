@@ -1,0 +1,26 @@
+.profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    border: solid 3px black;
+    position: absolute;
+    right: -8px;
+    padding: 5px 20px;
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-right: 30px;
+    background-color: white;
+    z-index: 1;
+    color: black;
+}
+
+.login {
+    color: black;
+}
+
+.signup {
+    color: black;
+}
+
+.logout {
+    color: black;
+}

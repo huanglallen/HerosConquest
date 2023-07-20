@@ -29,8 +29,8 @@ function App() {
             <Route expact path = '/battles/fight/:battleId' component={BattleField}/>
             <Route exact path='/battles' component={BattlesIndex}/>
             <Route exact path='/home' component={Home}/>
+            <Route exact path='/' component={LandingPage}/>
           </Layout>
-          <Route exact path='/' component={LandingPage}/>
         </Switch>
       )}
     </>
