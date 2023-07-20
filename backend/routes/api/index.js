@@ -3,7 +3,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const heroesRouter = require('./heroes.js');
 const monstersRouter = require('./monsters.js');
-const battlesRouter = require('./heroes.js');
+const battlesRouter = require('./battles.js');
 
 const { restoreUser } = require("../../utils/auth.js");
 router.use(restoreUser);

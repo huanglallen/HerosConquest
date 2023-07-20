@@ -3,11 +3,10 @@ const router = express.Router();
 
 const { Battle, Hero, Monster } = require('../../db/models');
 
-router.get('/:battleId', async (req, res) => {
-    const { battleId } = req.params;
-    const battle = Battle.findByPk(battleId);
+router.get('/', async (req, res) => {
+    const battle = await Battle.findAll();
 
-    if(!battle) return res.json({Battle: []});
+    if(!battle.length) return res.json({Battle: {}});
 
     return res.json({battle});
 });

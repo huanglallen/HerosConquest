@@ -25,7 +25,7 @@ router.post('/create', async (req, res) => {
     //err handler
     const errors = {}
     if(!name) errors.name = "Name is required";
-    if(name.length > 15) errors.name = "Name cannot be more than 15 characters long";
+    if(name && name.length > 15) errors.name = "Name cannot be more than 15 characters long";
 
     if (Object.keys(errors).length > 0) {
         return res.status(500).json({

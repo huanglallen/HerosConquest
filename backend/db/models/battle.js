@@ -15,7 +15,9 @@ module.exports = (sequelize, DataTypes) => {
   }
   Battle.init({
     heroId: DataTypes.INTEGER,
-    monsterId: DataTypes.INTEGER
+    monsterId: DataTypes.INTEGER,
+    heroHp: DataTypes.INTEGER,
+    monsterHp: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Battle',
