@@ -11,14 +11,20 @@ const BattlesIndex = () => {
     const [disabled, setDisabled] = useState(false);
     const battleArr = useSelector(state => state.battles?.battles?.battle);
     const [battle] = battleArr || [];
+    console.log('[battle?]', battle)
 
 
     useEffect(() => {
-        dispatch(getBattle())
-        if(!battle) {
-            setDisabled(true);
+        dispatch(getBattle());
+      }, [dispatch]);
+
+      useEffect(() => {
+        if (!battle) {
+          setDisabled(true);
+        } else {
+          setDisabled(false);
         }
-    }, [dispatch, battle]);
+      }, [battle]);
 
     const handleNewBattle = () => {
         history.push('/battles/new')
@@ -31,11 +37,11 @@ const BattlesIndex = () => {
     return (
         <div id="battleindex">
             <h2>Start your battle</h2>
-            <div onClick={handleNewBattle}>New Battle</div>
-            <div
+            <button onClick={handleNewBattle}>New Battle</button>
+            <button
             onClick={handleContinue}
             disabled={disabled}
-            >Continue</div>
+            >Continue</button>
         </div>
     );
 };
