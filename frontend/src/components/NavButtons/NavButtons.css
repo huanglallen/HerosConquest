@@ -11,9 +11,14 @@
     padding: 25px;
     font-size: 24px;
     border-bottom: 2px solid whitesmoke;
+}
+
+.navlink {
+    cursor: pointer;
     color: white;
 }
 
-.NavButtons > div:hover {
-    cursor: pointer;
+.navdisabled {
+    color: lightgray;
+    cursor: default;
 }
