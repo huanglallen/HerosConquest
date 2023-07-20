@@ -35,9 +35,8 @@ const NewBattle = () => {
             heroHp: battleHero.hp,
             monsterHp: battleMonster.hp
         };
-        console.log('[newBATTLE]', newBattle)
-        await dispatch(createBattle(newBattle))
-        history.push(`/battles/fight/${newBattle.id}`)
+        const createdBattle = await dispatch(createBattle(newBattle));
+        history.push(`/battles/fight/${createdBattle.id}`);
     };
 
     if(!user) return null;
