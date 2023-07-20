@@ -18,7 +18,7 @@ const BattlesIndex = () => {
         if(!battle) {
             setDisabled(true);
         }
-    }, [dispatch]);
+    }, [dispatch, battle]);
 
     const handleNewBattle = () => {
         history.push('/battles/new')
