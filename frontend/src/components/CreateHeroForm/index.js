@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createHero } from "../../store/heroes";
 import "./CreateHeroForm.css";
+import portraits from "../../hooks/portraits";
+import sprites from "../../hooks/sprites";
 
 const CreateHeroForm = () => {
     const dispatch = useDispatch();
@@ -44,13 +46,14 @@ const CreateHeroForm = () => {
 
     return (
         <div className="createhero-wrapper">
-            <h2 className="createhero-header">Create Your Hero</h2>
+            <h2 className="createhero-header">Create Your Hero:</h2>
             <div className="createhero-box">
                 <div className="createhero-left">
                     <div className="createhero-name">
-                        <h3>What's your name?</h3>
+                        <h3 className="hc-name-head">What's your name?</h3>
                         {validationErrors.name && <span className="createhero-errors">{validationErrors.name}</span>}
                         <input
+                        className="name-input"
                         type="text"
                         value={name}
                         onChange={e => setName(e.target.value)}
@@ -62,22 +65,22 @@ const CreateHeroForm = () => {
                         <div className="createhero-class-holder">
                             <div
                             onClick={e => setHeroClass('Knight')}
-                            >knight holder</div>
+                            >{portraits('Knight')}</div>
                             <div
                             onClick={e => setHeroClass('Hunter')}
-                            >hunter holder</div>
+                            >{portraits('Hunter')}</div>
                             <div
                             onClick={e => setHeroClass('Mage')}
-                            >mage holder</div>
+                            >{portraits('Mage')}</div>
                             <div
                             onClick={e => setHeroClass('Berserker')}
-                            >Berserker holder</div>
+                            >{portraits('Berserker')}</div>
                         </div>
                     </div>
                 </div>
                 <div className="createhero-middle">
-                    <p>className if selected</p>
-                    <p>hero image</p>
+                    <p className="hc-heroname">{heroClass}</p>
+                    <p className="hc-hero-sprite">{sprites(heroClass)}</p>
                     <button
                     onClick={handleSubmit}
                     >Create</button>

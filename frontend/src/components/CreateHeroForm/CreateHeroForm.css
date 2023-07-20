@@ -1,8 +1,96 @@
 .createhero-box {
     display: flex;
     justify-content: space-around;
+    width: 100%;
+    height: 100%;
 }
 
 .createhero-header {
     margin: 30px;
+}
+
+.createhero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.createhero-left > * {
+    margin: .5rem auto;
+}
+
+.name-input {
+    display: flex;
+    justify-content: center;
+    outline: none;
+    margin: 1rem auto;
+    padding: .5rem;
+}
+
+.createhero-class > h3 {
+    display: flex;
+    justify-content: center;
+    margin: 1rem auto;
+}
+
+.createhero-class-holder {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--hero);
+    border-radius: 15px;
+    margin: 1rem;
+}
+
+.createhero-class-holder > div > img {
+    height: 7rem;
+    margin: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.createhero-middle {
+    background-color: var(--dark);
+    border-radius: 15px;
+    margin: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem;
+    box-shadow: 1px 1px 1px 5px black;
+}
+
+.createhero-middle > * {
+    margin: auto;
+}
+
+.createhero-middle > button {
+    font-size: 24px;
+    border: black 4px solid;
+    box-shadow: 5px 5px 5px 2px black;
+    background-color: gray;
+    padding: 0.5rem 1.5rem;
+    margin: 1rem auto;
+
+}
+
+.hc-heroname {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 2rem auto;
+}
+
+.hc-hero-sprite  {
+    height: 20rem;
+}
+
+.hc-hero-sprite > img {
+    padding-top: 3rem;
+}
+
+.createhero-right {
+    border: 1px green solid;
+    width: 100%;
 }

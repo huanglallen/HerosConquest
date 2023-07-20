@@ -17,7 +17,14 @@
     text-decoration: none;
 }
 
+button {
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+}
+
 li {
     list-style-type: none;
 }
-
