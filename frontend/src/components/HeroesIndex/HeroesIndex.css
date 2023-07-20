@@ -8,15 +8,32 @@
 
 .heroes-holder {
     display: grid;
+    justify-content: center;
     grid-template-columns: 1fr 1fr 1fr;
     height: 100%;
     margin: auto 1rem;
 }
 
 .heroes-create {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem auto;
     height: 250px;
     width: 250px;
-    background-color: lightblue;
+    background-color: black;
+    color: white;
+    font-size: 20px;
     margin: 1rem;
     border-radius: 10px;
+}
+
+.hc-head {
+    font-weight: bold;
+    margin: 1rem auto;
+}
+
+.fa-square-plus {
+    margin: 1rem auto;
+    font-size: 120px;
 }

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import "./NavButtons.css";
@@ -17,7 +16,7 @@ const NavButtons = () => {
           </>
         ) : (
           <>
-            <div className='navdisabled'>Home</div>
+            <NavLink to='/home' className="navlink">Home</NavLink>
             <div className='navdisabled'>Heroes</div>
             <div className='navdisabled'>Battle</div>
           </>

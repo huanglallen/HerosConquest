@@ -27,7 +27,10 @@ const HeroesIndex = () => {
                     {userHeroes && userHeroes.map(hero => (
                         <SingleHero key={hero.id} hero={hero} />
                     ))}
-                <Link className="heroes-create" to="/heroes/create">Create New Hero</Link>
+                <Link className="heroes-create" to="/heroes/create">
+                    <div className="hc-head">Create New Hero</div>
+                <i className="fa-regular fa-square-plus"></i>
+                </Link>
             </div>
         </div>
     );
