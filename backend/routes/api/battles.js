@@ -39,7 +39,7 @@ router.post('/create', async (req, res) => {
 router.put('/fight/:battleId', async (req, res) => {
     const { heroId, monsterId, heroHp, monsterHp } = req.body;
     const { battleId } = req.params;
-    const battle = Battle.findByPk(battleId);
+    const battle = await Battle.findByPk(battleId);
 
     if(!battle) {
         return res.status(404).json({ message: "Battle couldn't be found" });
@@ -57,7 +57,7 @@ router.put('/fight/:battleId', async (req, res) => {
 
 router.delete('/:battleId', async (req, res) => {
     const { battleId } = req.params;
-    const battle = Battle.findByPk(battleId);
+    const battle = await Battle.findByPk(battleId);
 
     if(!battle) {
         return res.status(404).json({ message: "No battle found"});
