@@ -14,16 +14,18 @@ const CreateHeroForm = () => {
     // const [att, setAtt] = useState('');
     // const [def, setDef] = useState('');
     // const [spd, setSpd] = useState('');
-    const [validationErrors, setvalidationErrors] = useState({});
+    const [validationErrors, setValidationErrors] = useState({});
 
     const handleSubmit = async e => {
         e.preventDefault();
         const errors = {};
-        if(!name) errors.name = "Name is required";
-        if(name.length > 15) errors.name = "Name must be less than 16 characters";
-        setvalidationErrors(errors);
+        if (!name) errors.name = "Name is required";
+        if (name.length > 15) errors.name = "Name must be less than 16 characters";
+        if (!heroClass) errors.heroClass = "Select your class";
+        setValidationErrors(errors);
 
-        const newHero = {
+        if (Object.keys(errors).length === 0) {
+          const newHero = {
             ownerId: userId,
             name,
             heroClass,
@@ -34,10 +36,11 @@ const CreateHeroForm = () => {
             def: 10,
             spd: 10,
             attSpd: 2
-        };
-        dispatch(createHero(newHero));
-        history.push(`/heroes`);
-    };
+          };
+          await dispatch(createHero(newHero));
+          history.push(`/heroes`);
+        }
+      };
 
     return (
         <div className="createhero-wrapper">
@@ -46,6 +49,7 @@ const CreateHeroForm = () => {
                 <div className="createhero-left">
                     <div className="createhero-name">
                         <h3>What's your name?</h3>
+                        {validationErrors.name && <span className="createhero-errors">{validationErrors.name}</span>}
                         <input
                         type="text"
                         value={name}
@@ -54,6 +58,7 @@ const CreateHeroForm = () => {
                     </div>
                     <div className="createhero-class">
                         <h3>Choose your class</h3>
+                        {validationErrors.heroClass && <span className="createhero-errors">{validationErrors.heroClass}</span>}
                         <div className="createhero-class-holder">
                             <div
                             onClick={e => setHeroClass('Knight')}

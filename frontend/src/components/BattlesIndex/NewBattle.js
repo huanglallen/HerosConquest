@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getUserHeroes } from "../../store/heroes";
 import { getMonsters } from "../../store/monsters";
-import { createBattle, updateBattle } from "../../store/battles";
+import { createBattle } from "../../store/battles";
 import SingleMonster from "../SingleMonster";
 import "./NewBattle.css";
 import SingleHeroMini from "./SingleHeroMini";
@@ -11,8 +11,11 @@ import SingleHeroMini from "./SingleHeroMini";
 const NewBattle = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [battleHero, setBattleHero] = useState('');
-    const [battleMonster, setBattleMonster] = useState('');
+    const [battleHero, setBattleHero] = useState({});
+    const [battleMonster, setBattleMonster] = useState({});
+
+    // console.log("[BATLLE_HERO]", battleHero)
+    // console.log("[BATLLE_Monster]", battleMonster)
 
     const user = useSelector(state => state.session.user);
     const heroesObj = useSelector(state => state.heroes.userHeroes);
@@ -25,12 +28,16 @@ const NewBattle = () => {
         dispatch(getMonsters());
     }, [dispatch, user]);
 
-    const handleBattleClick = () => {
+    const handleBattleClick = async () => {
         const newBattle = {
-
+            heroId: battleHero.id,
+            monsterId: battleMonster.id,
+            heroHp: battleHero.hp,
+            monsterHp: battleMonster.hp
         };
-        dispatch(updateBattle(newBattle))
-        history.push(`/battles/fight/`)
+        console.log('[newBATTLE]', newBattle)
+        await dispatch(createBattle(newBattle))
+        history.push(`/battles/fight/${newBattle.id}`)
     };
 
     if(!user) return null;
@@ -42,8 +49,8 @@ const NewBattle = () => {
             </h2>
             <div className="battles-header">
                 sprite display
-                <p>{battleHero}</p>
-                <p>{battleMonster}</p>
+                <p>{battleHero.name}</p>
+                <p>{battleMonster.name}</p>
             </div>
             <div className="battles-body">
                 <div className="heroes-container">
@@ -51,6 +58,7 @@ const NewBattle = () => {
                         <div
                         className="heromini-container"
                         key={hero.id}
+                        onClick={() => setBattleHero(hero)}
                         >
                             <SingleHeroMini hero={hero} />
                         </div>
@@ -63,14 +71,20 @@ const NewBattle = () => {
                 <div className="monster-holder">
                     {monsters && monsters.map(monster => {
                         return (
-                            <div className="monstermini-container" key={monster.id}>
+                            <div className="monstermini-container"
+                            key={monster.id}
+                            onClick={() => setBattleMonster(monster)}
+                            >
                                 <SingleMonster monster={monster} />
                             </div>
                         )
                     })}
                 </div>
             </div>
-            <div className="battles-create">Battle Now</div>
+            <div
+            className="battles-create"
+            onClick={handleBattleClick}
+            >Battle Now</div>
         </div>
     );
 };

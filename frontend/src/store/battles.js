@@ -1,12 +1,12 @@
 import { csrfFetch } from "./csrf";
 
-const GET_USER_BATTLE = 'battles/GET_USER_BATTLE';
+const GET_BATTLE = 'battles/GET_BATTLE';
 const CREATE_BATTLE = 'battles/CREATE_BATTLE';
 const UPDATE_BATTLE = 'battles/UPDATE_BATTLE';
 const DELETE_BATTLE = 'battles/DELETE_BATTLE';
 
-const loadUserBattle = battle => ({
-    type: GET_USER_BATTLE,
+const loadBattle = battle => ({
+    type: GET_BATTLE,
     payload: battle
 });
 
@@ -28,11 +28,11 @@ const removeBattle = battleId => ({
 
 //THUNK
 
-export const getUserBattle = battleId => async dispatch => {
-    const res = await csrfFetch(`/api/battles/${battleId}`);
+export const getBattle = battles => async dispatch => {
+    const res = await csrfFetch(`/api/battles`);
     if(res.ok) {
         const data = await res.json();
-        dispatch(loadUserBattle(data));
+        dispatch(loadBattle(data));
         return data;
     }
 };
@@ -44,7 +44,7 @@ export const createBattle = battle => async dispatch => {
         body: JSON.stringify(battle)
     });
     if(res.ok) {
-        const data = res.json();
+        const data = await res.json();
         dispatch(makeBattle(data));
         return data;
     };
@@ -81,12 +81,8 @@ const initialState = {
 const battlesReducer = (state = initialState, action) => {
     let battleState = {};
     switch(action.type) {
-        case GET_USER_BATTLE:
-            battleState = {
-                ...state,
-                battles: {...state.battles}
-            };
-            return battleState;
+        case GET_BATTLE:
+            return { ...state, battles: action.payload};
         case CREATE_BATTLE:
             return { ...state, battles: action.payload };
         case UPDATE_BATTLE:
