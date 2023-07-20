@@ -1,19 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import "./BattlesIndex.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getBattle } from "../../store/battles";
+import "./BattlesIndex.css";
 
 
 const BattlesIndex = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const [disabled, setDisabled] = useState(false);
     const battleArr = useSelector(state => state.battles?.battles?.battle);
     const [battle] = battleArr || [];
 
 
     useEffect(() => {
         dispatch(getBattle())
+        if(!battle) {
+            setDisabled(true);
+        }
     }, [dispatch]);
 
     const handleNewBattle = () => {
@@ -28,7 +32,10 @@ const BattlesIndex = () => {
         <div id="battleindex">
             <h2>Start your battle</h2>
             <div onClick={handleNewBattle}>New Battle</div>
-            <div onClick={handleContinue}>Continue</div>
+            <div
+            onClick={handleContinue}
+            disabled={disabled}
+            >Continue</div>
         </div>
     );
 };
