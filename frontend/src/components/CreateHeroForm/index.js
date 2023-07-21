@@ -86,7 +86,7 @@ const CreateHeroForm = () => {
                     >Create</button>
                 </div>
                 <div className="createhero-right">
-                    <div>stats</div>
+                    <div className="hc-right-header">stats</div>
                 </div>
 
             </div>

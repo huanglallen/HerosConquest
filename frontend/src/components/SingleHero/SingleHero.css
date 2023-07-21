@@ -1,8 +1,8 @@
 #singlehero-wrapper {
     display: flex;
     flex-direction: column;
-    width: 250px;
-    height: 270px;
+    width: 36vh;
+    height: 44vh;
     background-color: black;
     border-top: 5px var(--hero) solid;
     margin: 1rem;
@@ -14,9 +14,8 @@
     flex-direction: row;
     justify-content: space-between;
     margin: auto 8px;
-    padding: 10px;
-    font-size: 18px;
-    height: 40px;
+    padding: 13px;
+    font-size: 20px;
 }
 
 .singlehero-body {
@@ -25,12 +24,11 @@
 }
 
 .singlehero-body > img {
-    width: 215px;
-    height: 180px;
+    width: 30vh;
+    height: 30vh;
 }
 
 .singlehero-footer {
-    height: 46px;
     display: flex;
     justify-content: flex-end;
     padding: 10px;

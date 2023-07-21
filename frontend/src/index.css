@@ -17,6 +17,10 @@
     text-decoration: none;
 }
 
+body {
+    /* overflow: hidden; */
+}
+
 button {
     text-decoration: none;
     cursor: pointer;

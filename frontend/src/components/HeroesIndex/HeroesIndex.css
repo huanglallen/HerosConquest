@@ -19,8 +19,8 @@
     flex-direction: column;
     justify-content: center;
     padding: 1rem auto;
-    height: 250px;
-    width: 250px;
+    height: 35vh;
+    width: 35vh;
     background-color: black;
     color: white;
     font-size: 20px;
@@ -35,5 +35,5 @@
 
 .fa-square-plus {
     margin: 1rem auto;
-    font-size: 120px;
+    font-size: 17vh;
 }
