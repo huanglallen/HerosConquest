@@ -14,7 +14,7 @@ const sprites = (type) => {
     if(type === 'zombie') return <img className="sprite" alt={type} src={zombie}/>;
     if(type === 'Death Knight') return <img className="sprite" alt={type} src={deathknight}/>;
     if(type === 'The Lurker') return <img className="sprite" alt={type} src={lurker}/>;
-    return;
+    return <i class="fa-regular fa-circle-question" ></i>;
 };
 
 export default sprites;

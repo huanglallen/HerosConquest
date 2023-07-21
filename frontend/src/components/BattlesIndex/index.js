@@ -11,8 +11,6 @@ const BattlesIndex = () => {
     const [disabled, setDisabled] = useState(false);
     const battleArr = useSelector(state => state.battles?.battles?.battle);
     const [battle] = battleArr || [];
-    console.log('[battle?]', battle)
-
 
     useEffect(() => {
         dispatch(getBattle());

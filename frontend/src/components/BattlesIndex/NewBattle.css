@@ -3,8 +3,27 @@
 }
 
 .battles-header {
+    width: 100%;
+    margin: auto;
     display: flex;
-    height: 50%;
+    justify-content: space-around;
+}
+
+.battles-hero, .battles-monster {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.battles-hero > img, .battles-hero > i, .battles-monster > img, battles-monster > i {
+    /* width: 100%; */
+    margin: 10px auto;
+    height: 16vw;
+}
+
+.battles-versus {
+    font-size: 24px;
+    color: goldenrod;
 }
 
 .battles-body {
@@ -14,31 +33,37 @@
 
 .heroes-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: var(--hero);
+    border-radius: 10px;
 }
 
 .heromini-container {
-    border: 1px blue solid;
     cursor: pointer;
 }
 
 .monster-holder {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     border: 1px solid red;
     margin: 2rem;
 }
 
 .monstermini-container {
-    border: 1px greenyellow solid;
+    background-color: var(--monster);
     cursor: pointer;
 }
 
 .battles-create {
     display: flex;
     justify-content: center;
-    margin: 10px auto;
-    padding: 10px 5px;
-    width: 15%;
-    border: 2px solid black;
+    width: 16%;
+    font-size: 24px;
+    border: black 4px solid;
+    box-shadow: 5px 5px 5px 2px black;
+    background-color: gray;
+    padding: 0.5rem 1rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    cursor: pointer;
 }

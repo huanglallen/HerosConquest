@@ -50,6 +50,7 @@
     justify-content: center;
     grid-template-columns: 1fr 1fr;
     background-color: var(--hero);
+    box-shadow: 2px 2px 1px 5px black;
     border-radius: 15px;
     margin: 1rem;
     padding: .5rem;
@@ -60,6 +61,7 @@
     margin: 10px;
     border-radius: 15px;
     cursor: pointer;
+    border: 5px black solid;
 }
 
 .createhero-middle {
@@ -99,8 +101,11 @@
     height: 20vh;
 }
 
+.hc-hero-sprite > i {
+    font-size: 170px;
+}
+
 .createhero-right {
-    border: 1px green solid;
     width: 100%;
     display: flex;
     justify-content: center;

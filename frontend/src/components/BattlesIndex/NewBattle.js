@@ -7,6 +7,7 @@ import { createBattle } from "../../store/battles";
 import SingleMonster from "../SingleMonster";
 import "./NewBattle.css";
 import SingleHeroMini from "./SingleHeroMini";
+import sprites from "../../hooks/sprites";
 
 const NewBattle = () => {
     const dispatch = useDispatch();
@@ -44,15 +45,17 @@ const NewBattle = () => {
     return (
         <div id="battles">
             <h2 className="battles-title">
-                Select your monster to battle:
+                Select your hero and monster to start the battle:
             </h2>
             <div className="battles-header">
-                sprite display
-                <p>{battleHero.name}</p>
-                <p>{battleMonster.name}</p>
+                <h3 className="battles-versus">
+                    {battleHero.name} VERSUS {battleMonster.name}</h3>
+
             </div>
             <div className="battles-body">
-                <div className="heroes-container">
+                <div className="battles-hero">
+                    {sprites(battleHero.heroClass)}
+                    <div className="heroes-container">
                     {userHeroes && userHeroes.map(hero => (
                         <div
                         className="heromini-container"
@@ -62,12 +65,11 @@ const NewBattle = () => {
                             <SingleHeroMini hero={hero} />
                         </div>
                     ))}
+                    </div>
                 </div>
-                <div className="battles-center">
-                    center here
-
-                </div>
-                <div className="monster-holder">
+                <div className="battles-monster">
+                    {sprites(battleMonster.name)}
+                    <div className="monster-holder">
                     {monsters && monsters.map(monster => {
                         return (
                             <div className="monstermini-container"
@@ -78,12 +80,13 @@ const NewBattle = () => {
                             </div>
                         )
                     })}
+                    </div>
                 </div>
             </div>
             <div
             className="battles-create"
             onClick={handleBattleClick}
-            >Battle Now</div>
+            >Start</div>
         </div>
     );
 };
