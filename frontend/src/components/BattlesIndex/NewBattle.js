@@ -4,10 +4,9 @@ import { useHistory } from "react-router-dom";
 import { getUserHeroes } from "../../store/heroes";
 import { getMonsters } from "../../store/monsters";
 import { createBattle } from "../../store/battles";
-import SingleMonster from "../SingleMonster";
 import "./NewBattle.css";
-import SingleHeroMini from "./SingleHeroMini";
 import sprites from "../../hooks/sprites";
+import portraits from "../../hooks/portraits";
 
 const NewBattle = () => {
     const dispatch = useDispatch();
@@ -49,12 +48,16 @@ const NewBattle = () => {
             </h2>
             <div className="battles-header">
                 <h3 className="battles-versus">
-                    {battleHero.name} VERSUS {battleMonster.name}</h3>
-
+                    <p>{battleHero.name}</p>
+                    <p>VERSUS</p>
+                    <p>{battleMonster.name}</p>
+                </h3>
             </div>
             <div className="battles-body">
                 <div className="battles-hero">
-                    {sprites(battleHero.heroClass)}
+                    <div className="battles-hero-s">
+                        {sprites(battleHero.heroClass)}
+                    </div>
                     <div className="heroes-container">
                     {userHeroes && userHeroes.map(hero => (
                         <div
@@ -62,13 +65,15 @@ const NewBattle = () => {
                         key={hero.id}
                         onClick={() => setBattleHero(hero)}
                         >
-                            <SingleHeroMini hero={hero} />
+                        {portraits(hero.heroClass)}
                         </div>
                     ))}
                     </div>
                 </div>
                 <div className="battles-monster">
-                    {sprites(battleMonster.name)}
+                    <div className="battles-monster-s">
+                        {sprites(battleMonster.name)}
+                    </div>
                     <div className="monster-holder">
                     {monsters && monsters.map(monster => {
                         return (
@@ -76,7 +81,7 @@ const NewBattle = () => {
                             key={monster.id}
                             onClick={() => setBattleMonster(monster)}
                             >
-                                <SingleMonster monster={monster} />
+                            {portraits(monster.name)}
                             </div>
                         )
                     })}
