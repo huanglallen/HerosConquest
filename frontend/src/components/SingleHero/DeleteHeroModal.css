@@ -1,0 +1,22 @@
+.deletehero-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.deletehero-title {
+    font-size: 24px;
+    margin: 30px;
+}
+
+.deletehero-button-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.deletehero-button-holder > button {
+    margin: 2rem 1rem;
+    margin-top: 0;
+    padding: .5rem 3rem;
+    font-size: 18px;
+}

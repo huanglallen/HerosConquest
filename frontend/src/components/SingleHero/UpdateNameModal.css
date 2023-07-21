@@ -1,0 +1,17 @@
+.updatehero-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.updatehero-title {
+    font-size: 24px;
+    margin: 1rem;
+}
+
+.updatehero-input {
+    width: 35%;
+    margin: 1rem auto;
+    padding: 5px;
+}

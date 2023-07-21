@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import UpdateNameModal from "./UpdateNameModal";
 import DeleteHeroModal from "./DeleteHeroModal";
@@ -7,8 +6,6 @@ import portraits from "../../hooks/portraits";
 import "./SingleHero.css";
 
 const SingleHero = ({ hero }) => {
-    const dispatch = useDispatch();
-    const history = useHistory();
     const user = useSelector(state => state.session.user)
 
     //modal items

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateHero } from "../../store/heroes";
 import { useModal } from "../../context/Modal";
+import "./UpdateNameModal.css";
 
 const UpdateNameModal = ({ hero }) => {
     const dispatch = useDispatch();
@@ -16,9 +17,11 @@ const UpdateNameModal = ({ hero }) => {
 
     return (
         <div className="updatehero-wrapper">
-            <h3>Would you like to update {hero.name}'s name?</h3>
+            <h3 className="updatehero-title">Would you like to update {hero.name}'s name?</h3>
             <input
+            className="updatehero-input"
             type="text"
+            placeholder="Name"
             onChange={e => setName(e.target.value)}
             />
             <button
