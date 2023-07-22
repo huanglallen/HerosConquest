@@ -44,7 +44,7 @@ export const createHero = hero => async dispatch => {
         body: JSON.stringify(hero)
     });
     if(res.ok) {
-        const data = res.json();
+        const data = await res.json();
         dispatch(makeHero(data));
         return data;
     };

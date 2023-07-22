@@ -10,8 +10,25 @@
     margin: 1rem;
 }
 
+.updatehero-errors {
+    margin: auto;
+    color: red;
+}
+
 .updatehero-input {
     width: 35%;
     margin: 1rem auto;
     padding: 5px;
+}
+
+.updatehero-button-holder {
+    display: flex;
+    justify-content: center;
+
+}
+
+.updatehero-button-holder > button {
+    margin: 1rem;
+    font-size: 18px;
+    padding: .5rem 2rem;
 }
