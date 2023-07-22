@@ -9,15 +9,18 @@
     justify-content: space-around;
 }
 
-.battles-hero, .battles-monster {
+.battles-hero-s, .battles-monster-s {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+
+
 .battles-hero-s > img, .battles-hero-s > i, .battles-monster-s > img, .battles-monster-s > i {
-    margin: 10px auto;
-    height: 16vw;
+    margin: 20px auto;
+    height: 15vw;
+    font-size: 8rem;
 }
 
 .battles-versus {
@@ -43,7 +46,7 @@
     background-color: var(--hero);
     box-shadow: 2px 2px 1px 5px black;
     border-radius: 15px;
-    margin: 25px;
+    margin: 2rem;
 }
 
 .heromini-container {

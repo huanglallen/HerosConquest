@@ -6,6 +6,8 @@ import "./BattleField.css";
 import { useEffect } from "react";
 import { getUserHeroes } from "../../store/heroes";
 import { getMonsters } from "../../store/monsters";
+import portraits from "../../hooks/portraits";
+import sprites from "../../hooks/sprites";
 
 const BattleField = () => {
     const dispatch = useDispatch();
@@ -66,24 +68,40 @@ const BattleField = () => {
 
     return (
         <div id="field">
-            <div className="field-body">
-                current battle
-            </div>
-            <div className="field-footer">
-                <p>heroHp: {battle.heroHp} / {hero.hp}</p>
-                <p>monsterHp: {battle.monsterHp} / {monster.hp}</p>
-            </div>
-            <div className="field-actions">
-                <div
-                className="field-attack"
-                onClick={handleAttack}
-                >Attack</div>
-                <div
-                className="field-run"
-                onClick={handleRun}
-                >
-                    Run
+            <body className="field-body">
+                <header className="field-header">
+                    <div className="field-hero">
+                        {portraits(hero.heroClass)}
+                        <p>{hero.name}: {battle.heroHp} / {hero.hp}</p>
+                    </div>
+                    <div className="field-monster">
+                        <p>{monster.name}: {battle.monsterHp} / {monster.hp}</p>
+                        {portraits(monster.name)}
+                    </div>
+                </header>
+                <div className="field-fight">
+                    <div className="field-hero-sprite">
+                        {sprites(hero.heroClass)}
+                    </div>
+                    <div className="field-monster-sprite">
+                        {sprites(monster.name)}
+                    </div>
                 </div>
+                <footer className="field-footer">
+                    <button
+                    className="field-attack"
+                    onClick={handleAttack}
+                    >Attack</button>
+                    <button
+                    className="field-run"
+                    onClick={handleRun}
+                    >
+                        Run
+                    </button>
+                </footer>
+            </body>
+            <div className="field-chat">
+                BattleText coming soon...
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getBattle } from "../../store/battles";
+import { deleteBattle, getBattle } from "../../store/battles";
 import "./BattlesIndex.css";
 
 
@@ -25,6 +25,9 @@ const BattlesIndex = () => {
       }, [battle]);
 
     const handleNewBattle = () => {
+      if(battle) {
+        dispatch(deleteBattle(battle.id));
+      }
         history.push('/battles/new')
     };
 

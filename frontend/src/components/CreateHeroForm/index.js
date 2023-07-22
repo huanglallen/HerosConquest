@@ -33,7 +33,7 @@ const CreateHeroForm = () => {
             heroClass,
             level: 1,
             xp: 0,
-            hp: 10,
+            hp: 22,
             att: 10,
             def: 10,
             spd: 10,

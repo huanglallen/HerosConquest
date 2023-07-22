@@ -1,0 +1,79 @@
+#field {
+    display: flex;
+    flex-direction: row;
+}
+
+.field-body {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.field-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0 0.5rem 0;
+}
+
+.field-header > div > p {
+    margin-bottom: 0;
+}
+
+.field-hero {
+    display: flex;
+    margin: auto;
+}
+
+.field-hero > img {
+    height: 5rem;
+    border: 5px black solid;
+    border-radius: 10px;
+}
+
+.field-monster {
+    display: flex;
+    margin: auto;
+}
+
+.field-monster > img {
+    height: 5rem;
+    border: 5px black solid;
+    border-radius: 10px;
+}
+
+.field-fight {
+    background-image: url('../../images/bg/gate-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 2rem;
+    border: 5px black solid;
+}
+
+.field-fight > * {
+    display: flex;
+    justify-content: center;
+    margin: 12rem auto 3rem auto;
+
+}
+
+.field-hero-sprite {
+    width: 35%;
+    height: auto;
+}
+
+.field-monster-sprite {
+    width: 35%;
+}
+
+.field-chat {
+    margin: 2rem 1rem;
+    padding: 10px;
+    width: 20%;
+    background-color: var(--dark);
+    border-radius: 15px;
+
+}
