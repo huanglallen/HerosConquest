@@ -11,17 +11,16 @@
 
 .field-header {
     display: flex;
-    justify-content: space-between;
     margin: 2rem 0 0.5rem 0;
 }
 
 .field-header > div > p {
-    margin-bottom: 0;
+    margin: auto 0 0 0;
 }
 
 .field-hero {
     display: flex;
-    margin: auto;
+    margin: auto auto auto 2rem;
 }
 
 .field-hero > img {
@@ -32,7 +31,7 @@
 
 .field-monster {
     display: flex;
-    margin: auto;
+    margin: auto 0 auto auto;
 }
 
 .field-monster > img {
@@ -67,6 +66,12 @@
 
 .field-monster-sprite {
     width: 35%;
+}
+
+.field-footer > button {
+    margin-left: 3rem;
+    font-size: 18px;
+    padding: 0.5rem 2rem;
 }
 
 .field-chat {

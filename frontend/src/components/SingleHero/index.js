@@ -20,7 +20,7 @@ const SingleHero = ({ hero }) => {
     if(!user) return null;
 
     return (
-        <div id="singlehero-wrapper">
+        <div id="singlehero-wrapper" key={hero.id}>
             <div className="singlehero-header">
                 <p>{hero.name}</p>
                 <p>lvl {hero.level}</p>
