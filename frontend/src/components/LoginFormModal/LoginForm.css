@@ -1,0 +1,38 @@
+#login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px 80px;
+}
+
+.login-title {
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form > label {
+    margin: 20px;
+}
+
+.login-form > label > p {
+    padding-bottom: 10px;
+}
+
+.login-form > label > input {
+    padding: 5px 50px;
+    width: 100%;
+}
+
+.login-errs {
+    color: red;
+}
+
+.login-form > button {
+    font-size: 18px;
+}

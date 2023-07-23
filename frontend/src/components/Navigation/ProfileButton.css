@@ -21,10 +21,15 @@
 
 .login {
     color: black;
+    cursor: pointer;
+    border-bottom: 2px black solid;
+    padding: 3px;
 }
 
 .signup {
     color: black;
+    cursor: pointer;
+    padding: 3px;
 }
 
 .logout {
