@@ -24,8 +24,10 @@
 }
 
 .nav-title {
-    font-size: 24px;
+    font-size: 2rem;
     margin-top: 15px;
     font-weight: bold;
     color: blanchedalmond;
+    text-shadow: 2px 2px 4px black;
+    transform: perspective(400px) rotateX(20deg);
 }

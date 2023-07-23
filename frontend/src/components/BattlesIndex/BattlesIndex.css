@@ -18,10 +18,7 @@
 
 .bi-title {
     margin: 2rem auto;
-    /* font-size: 32px;
-    font-weight: bold;
-    color: black; */
-    font-size: 3rem;
+    font-size: 4rem;
     color: whitesmoke;
     text-shadow: 2px 2px 4px black;
     transform: perspective(400px) rotateX(20deg);
