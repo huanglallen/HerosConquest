@@ -1,6 +1,7 @@
 .profilebutton {
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 20px;
+    padding: 5px 15px;
     box-shadow: 1px 1px 1px 1px black;
 }
 
@@ -28,6 +29,7 @@
 
 .signup {
     color: black;
+    border-bottom: 2px black solid;
     cursor: pointer;
     padding: 3px;
 }

@@ -44,6 +44,15 @@ function SignupFormModal() {
     });
   };
 
+  const DemoUser = e => {
+    e.preventDefault();
+    dispatch(sessionActions.login({
+      credential: 'demo@user.io',
+      password: 'password'
+    }))
+    closeModal();
+  }
+
   return (
     <div id="signup">
       <h1 className="signup-title">Sign Up</h1>
@@ -98,6 +107,9 @@ function SignupFormModal() {
         {errors.confirmPassword && (
           <p className="signup-err">{errors.confirmPassword}</p>
         )}
+        <div className="demo" onClick={DemoUser}>
+          Demo User
+        </div>
         {disabledButton() ?
         <button
         className="disabledSignupButton"

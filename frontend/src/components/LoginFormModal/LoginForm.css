@@ -32,8 +32,10 @@
 
 .login-errs {
     color: red;
+    margin: 5px auto;
 }
 
 .login-form > button {
     font-size: 18px;
+    margin: 20px auto;
 }

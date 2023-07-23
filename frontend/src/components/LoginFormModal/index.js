@@ -24,6 +24,15 @@ function LoginFormModal() {
       });
   };
 
+  const DemoUser = e => {
+    e.preventDefault();
+    dispatch(sessionActions.login({
+      credential: 'demo@user.io',
+      password: 'password'
+    }))
+    closeModal();
+  }
+
   return (
     <div id="login">
       <h1 className="login-title">Login Now</h1>
@@ -50,10 +59,13 @@ function LoginFormModal() {
             required
           />
         </label>
+        <div className="demo" onClick={DemoUser}>
+          Demo User
+        </div>
+        <button type="submit">Log In</button>
         {errors.credential && (
           <p className="login-errs">{errors.credential}</p>
         )}
-        <button type="submit">Log In</button>
       </form>
     </div>
   );

@@ -38,3 +38,10 @@ button {
 li {
     list-style-type: none;
 }
+
+.demo {
+    cursor: pointer;
+    color: aqua;
+    text-decoration: underline;
+    margin: auto;
+}
