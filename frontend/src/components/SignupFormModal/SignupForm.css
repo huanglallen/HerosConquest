@@ -1,0 +1,44 @@
+#signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px 80px;
+}
+
+.signup-title {
+    margin: auto;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 300px;
+}
+
+.signup-form > label {
+    margin: 20px;
+}
+
+.signup-form > label > p {
+    padding-bottom: 10px;
+}
+
+.signup-form > label > input {
+    width: 100%;
+    padding: 5px;
+}
+
+.signup-form > button {
+    font-size: 18px;
+}
+
+.disabledSignupButton {
+    cursor: default;
+    color: darkgray;
+}
+
+.signup-err {
+    color: red;
+}

@@ -45,42 +45,50 @@ function SignupFormModal() {
   };
 
   return (
-    <div className="signupModalWrapper">
-      <h1>Sign Up</h1>
-      <form className="signupForm" onSubmit={handleSubmit}>
+    <div id="signup">
+      <h1 className="signup-title">Sign Up</h1>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <label>
+          <p>
+          Email
+          </p>
           <input
-          placeholder="Email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="signup-err">{errors.email}</p>}
         <label>
+          <p>
+            Username
+          </p>
           <input
-          placeholder="Username"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="signup-err">{errors.username}</p>}
         <label>
+          <p>
+            Password
+          </p>
           <input
-          placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="signup-err">{errors.password}</p>}
         <label>
+          <p>
+            Confirm Password
+          </p>
           <input
-          placeholder="Confirm Password"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -88,7 +96,7 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
+          <p className="signup-err">{errors.confirmPassword}</p>
         )}
         {disabledButton() ?
         <button
