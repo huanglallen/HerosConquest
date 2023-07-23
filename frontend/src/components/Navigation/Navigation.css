@@ -17,3 +17,15 @@
     font-size: 18px;
 }
 
+.nav-icon > img {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 40px;
+}
+
+.nav-title {
+    font-size: 24px;
+    margin-top: 15px;
+    font-weight: bold;
+    color: blanchedalmond;
+}

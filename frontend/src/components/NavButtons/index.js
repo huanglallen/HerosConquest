@@ -10,7 +10,7 @@ const NavButtons = () => {
       <div className="NavButtons">
         {sessionUser ? (
           <>
-            <NavLink to='/home' className="navlink">Home</NavLink>
+            <NavLink to='/' className="navlink">Home</NavLink>
             <NavLink to='/heroes' className="navlink">Heroes</NavLink>
             <NavLink to='/battles' className="navlink">Battle</NavLink>
           </>

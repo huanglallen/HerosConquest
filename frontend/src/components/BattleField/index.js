@@ -8,11 +8,14 @@ import { getUserHeroes } from "../../store/heroes";
 import { getMonsters } from "../../store/monsters";
 import portraits from "../../hooks/portraits";
 import sprites from "../../hooks/sprites";
+import { useModal } from "../../context/Modal";
+import BattleCompleted from "./BattleCompleted";
 
 const BattleField = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { battleId } = useParams();
+    const { setModalContent } = useModal();
   const [isBattleUpdated, setIsBattleUpdated] = useState(false);
 
     const userId = useSelector(state => state.session.user.id)
@@ -25,10 +28,6 @@ const BattleField = () => {
     const monstersObj = useSelector(state => state.monsters?.monsters);
     const monsters = Object.values(monstersObj);
     const monster = monsters.find(monster => monster.id === battle?.monsterId);
-
-    // console.log('[btl_FIELD]', battle)
-    // console.log('[btl_heroes]', hero)
-    // console.log('[btl_monsters]', monster)
 
 
     useEffect(() => {
@@ -44,6 +43,13 @@ const BattleField = () => {
           setIsBattleUpdated(false); // Reset the state after refetching
         }
       }, [dispatch, isBattleUpdated]);
+
+      //Battle finished
+      useEffect(() => {
+        if(battle && battle.heroHp <= 0 || battle && battle.monsterHp <= 0) {
+            setModalContent(<BattleCompleted battle={battle} type={battle.heroHp <= 0 ? monster.name : hero.name}/>)
+        }
+      }, [battle])
 
     const handleAttack = async (e) => {
         e.preventDefault();

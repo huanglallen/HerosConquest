@@ -1,3 +1,9 @@
+.profilebutton {
+    margin-right: 10px;
+    font-size: 18px;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
 .profile-dropdown {
     display: flex;
     flex-direction: column;
@@ -8,7 +14,7 @@
     padding-left: 20px;
     margin-top: 5px;
     margin-right: 30px;
-    background-color: white;
+    background-color:whitesmoke;
     z-index: 1;
     color: black;
 }
@@ -22,5 +28,5 @@
 }
 
 .logout {
-    color: black;
+    box-shadow: none;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import icon from '../../images/icons/icon.png'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
@@ -10,10 +11,10 @@ function Navigation({ isLoaded }){
   return (
     <nav id='nav'>
       <ul className='navitems'>
-        <li>
-          <NavLink exact to="/">Home</NavLink>
+        <li className='nav-icon'>
+          <img src={icon} alt='icon'/>
         </li>
-        <li>Hero's Conquest</li>
+        <li className='nav-title'>Hero's Conquest</li>
         {isLoaded && (
           <li>
             <ProfileButton user={sessionUser} />

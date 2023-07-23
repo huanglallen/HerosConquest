@@ -1,0 +1,10 @@
+.battle-completed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+}
+
+.battle-completed > p {
+    font-size: 24px;
+}
