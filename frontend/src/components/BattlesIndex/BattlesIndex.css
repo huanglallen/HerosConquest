@@ -1,1 +1,33 @@
+#battleindex {
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("../../images/bg/home.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 80vh;
+    /* width: 90%; */
+    border: 5px black solid;
+}
 
+#battleindex > button {
+    font-size: 24px;
+}
+
+.bi-title {
+    margin: 2rem auto;
+    /* font-size: 32px;
+    font-weight: bold;
+    color: black; */
+    font-size: 3rem;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px black;
+    transform: perspective(400px) rotateX(20deg);
+}
+
+.bi-continue-d {
+    cursor: default;
+    color: darkgray;
+}
