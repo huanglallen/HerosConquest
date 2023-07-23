@@ -3,21 +3,20 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    /* overflow: hidden; */
 }
 
 .layout-bot {
     display: flex;
+    flex: 1;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     width: 100%;
-    overflow-y: scroll;
-}
-
-.main {
-    width: 100%;
+    overflow-y: auto;
+    flex: 1;
 }
 
 .nav {
@@ -27,8 +26,7 @@
 
 .nav-left {
     background-color: var(--dark);
-    height: 100vh;
+    height: 100%;
     width: 225px;
-    flex-grow: 1;
     box-shadow: 5px 5px 5px 0px black;
 }

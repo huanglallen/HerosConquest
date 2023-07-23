@@ -14,9 +14,7 @@ const Layout = ({ isLoaded, children }) => {
                     <NavButtons />
                 </div>
                 <div className="content">
-                    <div className="main">
-                        {children}
-                        </div>
+                    {children}
                 </div>
             </div>
         </div>
