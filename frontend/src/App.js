@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import HeroesIndex from "./components/HeroesIndex";
 import CreateHeroForm from "./components/CreateHeroForm";
-import LandingPage from "./components/LandingPage";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import BattlesIndex from "./components/BattlesIndex";

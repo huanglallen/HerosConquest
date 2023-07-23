@@ -1,0 +1,43 @@
+#home {
+    margin: 2rem 6rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-title {
+    background-image: url('../../images/bg/night.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 3px solid black;
+    border-radius: 10px;
+    height: 80px;
+}
+
+.home-title > h1 {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-top: 15px;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px black;
+    transform: perspective(400px) rotateX(20deg);
+}
+
+.home-body > h1 {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.home-body > h2 {
+    margin: 1rem auto;
+}
+
+.home-body > h3 {
+    margin: 1rem auto;
+}
+
+.home-body > p {
+    margin: 0.5rem 2rem;
+}

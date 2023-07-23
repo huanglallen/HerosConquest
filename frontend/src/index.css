@@ -39,6 +39,11 @@ li {
     list-style-type: none;
 }
 
+hr {
+    margin: 1rem auto;
+    color: none;
+}
+
 .demo {
     cursor: pointer;
     color: aqua;

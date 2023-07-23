@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
         <li className='nav-icon'>
           <img src={icon} alt='icon'/>
         </li>
-        <li className='nav-title'>Hero's Conquest</li>
+        <li className='nav-title'>HERO'S CONQUEST</li>
         {isLoaded && (
           <li>
             <ProfileButton user={sessionUser} />
