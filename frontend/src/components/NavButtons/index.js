@@ -16,7 +16,7 @@ const NavButtons = () => {
           </>
         ) : (
           <>
-            <NavLink to='/home' className="navlink">Home</NavLink>
+            <NavLink to='/' className="navlink">Home</NavLink>
             <div className='navdisabled'>Heroes</div>
             <div className='navdisabled'>Battle</div>
           </>
