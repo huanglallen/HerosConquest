@@ -11,6 +11,22 @@ Hero's Conquest is a turn-based role-playing game that allows players to create 
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 
+##Getting Started
+1. Clone this repository: https://github.com/huanglallen/HerosConquest.git
+
+2. Install dependencies into the Backend and Frontend by starting a terminal for each one and run the following:
+   *backend directory:
+       *`npm install`
+   *frontend directory:
+       *`npm install`
+3. Locate the `.envexample` file in the backend directory and create a new `.env` file in the same directory. Copy all contents from `.envexample` and paste it into `.env`.
+
+4. Set up your database with information by creating your `dev.db` file by running the following in the backend directory:
+   * migration: `npx dotenv sequelize-cli db:migrate`
+   * seeds: `npx dotenv sequelize-cli db:seed:all`
+  
+5. Start the app by running `npm start` in both the backend and frontend directory terminal.
+
 ## Database Schema Design
 
 ![db-schema]
