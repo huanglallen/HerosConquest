@@ -8,6 +8,7 @@ const { Gold } = require('../../db/models');
 router.get('/:userId', async (req, res) => {
     const { userId } = req.params;
     const userGold = await Gold.findByPk(userId);
+    
 
 });
 
