@@ -32,7 +32,13 @@ function App() {
     };
 
     ws.onmessage = e => {
-      console.log(e);
+      console.log(`Processing incoming message: ${e.data}...`);
+
+      const chatMessage = JSON.parse(e.data);
+      const message = chatMessage.data;
+      message.created = new Date(message.created);
+
+      setMessages([message, ...messages]);
     };
 
     ws.onerror = e => {
@@ -50,7 +56,9 @@ function App() {
         webSocket.current.close();
       }
     };
-  }, [username]);
+  }, [username, messages]);
+
+  
 
   const updateUsername = username => {
     setUsername(username);
