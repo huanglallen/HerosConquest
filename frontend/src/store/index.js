@@ -4,15 +4,13 @@ import sessionReducer from "./session";
 import heroesReducer from "./heroes";
 import monstersReducer from "./monsters";
 import battlesReducer from "./battles";
-import goldReducer from "./gold";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   heroes: heroesReducer,
   monsters: monstersReducer,
-  battles: battlesReducer,
-  gold: goldReducer
+  battles: battlesReducer
 });
 
 let enhancer;

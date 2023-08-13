@@ -18,84 +18,84 @@ function App() {
   //Websocket Start
 
   //username stuff === bananable
-  const [username, setUsername] = useEffect('');
-  const [messages, setMessages] = useState([]);
-  const webSocket = useRef(null);
+  // const [username, setUsername] = useEffect('');
+  // const [messages, setMessages] = useState([]);
+  // const webSocket = useRef(null);
 
-  useEffect(() => {
-    if(!username) return;
+  // useEffect(() => {
+  //   if(!username) return;
 
-    const ws = new WebSocket(process.env.REACT_APP_WS_URL);
+  //   const ws = new WebSocket(process.env.REACT_APP_WS_URL);
 
-    ws.onopen = e => {
-      console.log(`Connection open: ${e}`);
-      setMessages([]);
-    };
+  //   ws.onopen = e => {
+  //     console.log(`Connection open: ${e}`);
+  //     setMessages([]);
+  //   };
 
-    ws.onerror = e => {
-      console.log(e);
-    };
+  //   ws.onerror = e => {
+  //     console.log(e);
+  //   };
 
-    ws.onclose = e => {
-      console.log(`Connection close: ${e}`);
-      webSocket.current = null;
-      setUsername('');
-      setMessages([]);
-    };
+  //   ws.onclose = e => {
+  //     console.log(`Connection close: ${e}`);
+  //     webSocket.current = null;
+  //     setUsername('');
+  //     setMessages([]);
+  //   };
 
-    webSocket.current = ws;
+  //   webSocket.current = ws;
 
-    return function cleanup() {
-      if(webSocket.current !== null) {
-        webSocket.current.close();
-      }
-    };
-  }, [username]);
+  //   return function cleanup() {
+  //     if(webSocket.current !== null) {
+  //       webSocket.current.close();
+  //     }
+  //   };
+  // }, [username]);
 
-  //This effect is called whenever the 'messages' state is changed
-  useEffect(() => {
-    if(webSocket.current !== null) {
-      //when changed, reassign 'onmessage' event listener
-      //to wrap around the updated state variable value
-      webSocket.current.onmessage = e => {
-        console.log(`Processing incoming message ${e.data}...`);
+  // //This effect is called whenever the 'messages' state is changed
+  // useEffect(() => {
+  //   if(webSocket.current !== null) {
+  //     //when changed, reassign 'onmessage' event listener
+  //     //to wrap around the updated state variable value
+  //     webSocket.current.onmessage = e => {
+  //       console.log(`Processing incoming message ${e.data}...`);
 
-        const chatMessage = JSON.parse(e.data);
-        const message = chatMessage.data;
-        message.created = new Date(message.created);
+  //       const chatMessage = JSON.parse(e.data);
+  //       const message = chatMessage.data;
+  //       message.created = new Date(message.created);
 
-        setMessages([message, ...messages])
-      };
-    };
-  }, [messages]);
+  //       setMessages([message, ...messages])
+  //     };
+  //   };
+  // }, [messages]);
 
-  const updateUsername = username => {
-    setUsername(username);
-  };
+  // const updateUsername = username => {
+  //   setUsername(username);
+  // };
 
-  const handleSendMessage = message => {
-    const newMessage = {
-      id: uuid(),
-      username,
-      message,
-      created: new Date()
-    };
+  // const handleSendMessage = message => {
+  //   const newMessage = {
+  //     id: uuid(),
+  //     username,
+  //     message,
+  //     created: new Date()
+  //   };
 
-    const jsonNewMessage = JSON.stringify({
-      type: 'send-chat-message',
-      data: newMessage
-    });
+  //   const jsonNewMessage = JSON.stringify({
+  //     type: 'send-chat-message',
+  //     data: newMessage
+  //   });
 
-    //test console.log
-    console.log(`Sending message: ${jsonNewMessage}...`);
-    webSocket.current.send(jsonNewMessage);
+  //   //test console.log
+  //   console.log(`Sending message: ${jsonNewMessage}...`);
+  //   webSocket.current.send(jsonNewMessage);
 
-    setMessages([newMessage, ...messages]);
-  };
+  //   setMessages([newMessage, ...messages]);
+  // };
 
-  const handleLeave = () => {
-    setUsername('');
-  };
+  // const handleLeave = () => {
+  //   setUsername('');
+  // };
 
   //WebSocket end
 

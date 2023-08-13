@@ -7,8 +7,6 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { ValidationError } = require('sequelize');
 
-const { createServer } = require('http');
-const WebSocket = require('ws');
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
@@ -31,7 +29,7 @@ app.use(
   helmet.crossOriginResourcePolicy({
     policy: "cross-origin"
   })
-);
+  );
 
 // Set the _csrf token and create req.csrfToken method
 app.use(
@@ -44,25 +42,44 @@ app.use(
   })
 );
 
-// Catch unhandled requests and forward to error handler.
 const routes = require('./routes');
 app.use(routes);
 
-
 //WebSockets
+const { createServer } = require('http');
+const WebSocket = require('ws');
 const server = createServer(app);
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', ws => {
   ws.on('message', jsonData => {
     console.log(`processing incoming message: ${jsonData}...`);
+    const message = JSON.parse(jsonData);
+    const chatMessage = message.data;
+
+    const addChatMessage = {
+      type: 'add-chat-message',
+      data: chatMessage
+    };
+
+    const jsonAddChatMessage = JSON.stringify(addChatMessage);
+    console.log(`Sending Message: ${jsonAddChatMessage}...`);
+
+    wss.clients.forEach(client => {
+      //Ready states include: CONNECTING, OPEN, CLOSING, CLOSED
+      if(client.readyState === WebSocket.OPEN) {
+        client.send(jsonAddChatMessage);
+      };
+    });
   });
+
   ws.on('close', e => {
     console.log(e)
   });
 });
 
 
+// Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
   err.title = "Resource Not Found";

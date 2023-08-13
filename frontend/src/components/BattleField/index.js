@@ -106,9 +106,7 @@ const BattleField = () => {
                     </button>
                 </footer>
             </body>
-            <div className="field-chat">
-                BattleText coming soon...
-            </div>
+            
         </div>
     );
 };
