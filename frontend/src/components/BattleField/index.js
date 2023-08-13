@@ -10,6 +10,7 @@ import portraits from "../../hooks/portraits";
 import sprites from "../../hooks/sprites";
 import { useModal } from "../../context/Modal";
 import BattleCompleted from "./BattleCompleted";
+import BattleChat from "../BattleChat";
 
 const BattleField = () => {
     const dispatch = useDispatch();
@@ -106,7 +107,9 @@ const BattleField = () => {
                     </button>
                 </footer>
             </body>
-            
+            <div className="field-chat">
+                <BattleChat />
+            </div>
         </div>
     );
 };

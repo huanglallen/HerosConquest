@@ -14,9 +14,6 @@ const NewBattle = () => {
     const [battleHero, setBattleHero] = useState({});
     const [battleMonster, setBattleMonster] = useState({});
 
-    // console.log("[BATLLE_HERO]", battleHero)
-    // console.log("[BATLLE_Monster]", battleMonster)
-
     const user = useSelector(state => state.session.user);
     const heroesObj = useSelector(state => state.heroes.userHeroes);
     const userHeroes = Object.values(heroesObj);
