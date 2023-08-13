@@ -14,6 +14,10 @@ import BattleField from "./components/BattleField";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
+  //Websocket Start
+
+  //username stuff === bananable
   const [username, setUsername] = useEffect('');
   const [messages, setMessages] = useState([]);
   const webSocket = useRef(null);
@@ -47,6 +51,36 @@ function App() {
       }
     };
   }, [username]);
+
+  const updateUsername = username => {
+    setUsername(username);
+  };
+
+  const handleSendMessage = message => {
+    const newMessage = {
+      id: uuid(),
+      username,
+      message,
+      created: new Date()
+    };
+
+    const jsonNewMessage = JSON.stringify({
+      type: 'send-chat-message',
+      data: newMessage
+    });
+
+    //test console.log
+    console.log(`Sending message: ${jsonNewMessage}...`);
+    webSocket.current.send(jsonNewMessage);
+
+    setMessages([newMessage, ...messages]);
+  };
+
+  const handleLeave = () => {
+    setUsername('');
+  };
+
+  //WebSocket end
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
