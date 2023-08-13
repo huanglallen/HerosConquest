@@ -29,16 +29,7 @@ function App() {
 
     ws.onopen = e => {
       console.log(`Connection open: ${e}`);
-    };
-
-    ws.onmessage = e => {
-      console.log(`Processing incoming message: ${e.data}...`);
-
-      const chatMessage = JSON.parse(e.data);
-      const message = chatMessage.data;
-      message.created = new Date(message.created);
-
-      setMessages([message, ...messages]);
+      setMessages([]);
     };
 
     ws.onerror = e => {
@@ -47,6 +38,9 @@ function App() {
 
     ws.onclose = e => {
       console.log(`Connection close: ${e}`);
+      webSocket.current = null;
+      setUsername('');
+      setMessages([]);
     };
 
     webSocket.current = ws;
@@ -56,9 +50,24 @@ function App() {
         webSocket.current.close();
       }
     };
-  }, [username, messages]);
+  }, [username]);
 
-  
+  //This effect is called whenever the 'messages' state is changed
+  useEffect(() => {
+    if(webSocket.current !== null) {
+      //when changed, reassign 'onmessage' event listener
+      //to wrap around the updated state variable value
+      webSocket.current.onmessage = e => {
+        console.log(`Processing incoming message ${e.data}...`);
+
+        const chatMessage = JSON.parse(e.data);
+        const message = chatMessage.data;
+        message.created = new Date(message.created);
+
+        setMessages([message, ...messages])
+      };
+    };
+  }, [messages]);
 
   const updateUsername = username => {
     setUsername(username);
