@@ -6,45 +6,45 @@ import * as sessionActions from "../../store/session";
 const BattleChat = ({ battle }) => {
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState('');
+//   const [username, setUsername] = useState('');
   const [messages, setMessages] = useState([]);
   const webSocket = useRef(null);
 
-  useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => {
-      setUsername(''); // Set the username based on your user restoration logic
-    });
-  }, [dispatch]);
+//   useEffect(() => {
+//     dispatch(sessionActions.restoreUser()).then(() => {
+//       setUsername(''); // Set the username based on your user restoration logic
+//     });
+//   }, [dispatch]);
 
-  useEffect(() => {
-    if (!username) return;
+//   useEffect(() => {
+//     if (!username) return;
 
-    const ws = new WebSocket(process.env.REACT_APP_WS_URL);
+//     const ws = new WebSocket(process.env.REACT_APP_WS_URL);
 
-    ws.onopen = (e) => {
-      console.log(`Connection open: ${e}`);
-      setMessages([]);
-    };
+//     ws.onopen = (e) => {
+//       console.log(`Connection open: ${e}`);
+//       setMessages([]);
+//     };
 
-    ws.onerror = (e) => {
-      console.log(e);
-    };
+//     ws.onerror = (e) => {
+//       console.log(e);
+//     };
 
-    ws.onclose = (e) => {
-      console.log(`Connection close: ${e}`);
-      webSocket.current = null;
-      setUsername('');
-      setMessages([]);
-    };
+//     ws.onclose = (e) => {
+//       console.log(`Connection close: ${e}`);
+//       webSocket.current = null;
+//       setUsername('');
+//       setMessages([]);
+//     };
 
-    webSocket.current = ws;
+//     webSocket.current = ws;
 
-    return function cleanup() {
-      if (webSocket.current !== null) {
-        webSocket.current.close();
-      }
-    };
-  }, [username]);
+//     return function cleanup() {
+//       if (webSocket.current !== null) {
+//         webSocket.current.close();
+//       }
+//     };
+//   }, [username]);
 
   useEffect(() => {
     if (webSocket.current !== null) {
@@ -104,12 +104,12 @@ const BattleChat = ({ battle }) => {
 
       setMessages([newMessage, ...messages]);
     }
-  }, [battle.heroHp, battle.monsterHp, messages]);
+  }, [battle.heroHp, battle.monsterHp]);
 
 
-  const handleLeave = () => {
-    setUsername('');
-  };
+//   const handleLeave = () => {
+//     setUsername('');
+//   };
 
   return (
     <div>
