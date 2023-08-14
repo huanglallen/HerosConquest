@@ -61,11 +61,11 @@ const BattleChat = ({ battle }) => {
   }, [messages]);
 
   useEffect(() => {
-    const handleHpChange = (type, newHp) => {
+    if (battle.heroHp !== undefined) {
       const newMessage = {
         id: uuid(),
-        username: 'System', // You can customize this to the desired sender name
-        message: `${type === 'hero' ? 'Hero' : 'Monster'} HP changed to ${newHp}`,
+        username: 'System',
+        message: `Hero HP changed to ${battle.heroHp}`,
         created: new Date(),
       };
 
@@ -75,24 +75,37 @@ const BattleChat = ({ battle }) => {
       });
 
       console.log(`Sending message: ${jsonNewMessage}...`);
-      webSocket.current.send(jsonNewMessage);
+
+      if (webSocket.current) {
+        webSocket.current.send(jsonNewMessage);
+      }
 
       setMessages([newMessage, ...messages]);
-    };
+    }
 
-    battle.on('heroHpChange', (newHp) => {
-      handleHpChange('hero', newHp);
-    });
+    if (battle.monsterHp !== undefined) {
+      const newMessage = {
+        id: uuid(),
+        username: 'System',
+        message: `Monster HP changed to ${battle.monsterHp}`,
+        created: new Date(),
+      };
 
-    battle.on('monsterHpChange', (newHp) => {
-      handleHpChange('monster', newHp);
-    });
+      const jsonNewMessage = JSON.stringify({
+        type: 'send-chat-message',
+        data: newMessage,
+      });
 
-    return () => {
-      battle.off('heroHpChange');
-      battle.off('monsterHpChange');
-    };
-  }, [battle, messages]);
+      console.log(`Sending message: ${jsonNewMessage}...`);
+
+      if (webSocket.current) {
+        webSocket.current.send(jsonNewMessage);
+      }
+
+      setMessages([newMessage, ...messages]);
+    }
+  }, [battle.heroHp, battle.monsterHp, messages]);
+
 
   const handleLeave = () => {
     setUsername('');

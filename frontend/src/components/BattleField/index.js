@@ -47,7 +47,7 @@ const BattleField = () => {
 
       //Battle finished
       useEffect(() => {
-        if(battle && battle.heroHp <= 0 || battle && battle.monsterHp <= 0) {
+        if((battle && battle.heroHp <= 0) || (battle && battle.monsterHp <= 0)) {
             setModalContent(<BattleCompleted battle={battle} type={battle.heroHp <= 0 ? monster.name : hero.name}/>)
         }
       }, [battle])
@@ -108,7 +108,7 @@ const BattleField = () => {
                 </footer>
             </body>
             <div className="field-chat">
-                <BattleChat />
+                <BattleChat battle={battle} />
             </div>
         </div>
     );
