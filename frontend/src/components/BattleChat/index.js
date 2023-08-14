@@ -1,50 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { v4 as uuid } from 'uuid';
-import * as sessionActions from "../../store/session";
 
 const BattleChat = ({ battle }) => {
   const dispatch = useDispatch();
-
-//   const [username, setUsername] = useState('');
   const [messages, setMessages] = useState([]);
   const webSocket = useRef(null);
-
-//   useEffect(() => {
-//     dispatch(sessionActions.restoreUser()).then(() => {
-//       setUsername(''); // Set the username based on your user restoration logic
-//     });
-//   }, [dispatch]);
-
-//   useEffect(() => {
-//     if (!username) return;
-
-//     const ws = new WebSocket(process.env.REACT_APP_WS_URL);
-
-//     ws.onopen = (e) => {
-//       console.log(`Connection open: ${e}`);
-//       setMessages([]);
-//     };
-
-//     ws.onerror = (e) => {
-//       console.log(e);
-//     };
-
-//     ws.onclose = (e) => {
-//       console.log(`Connection close: ${e}`);
-//       webSocket.current = null;
-//       setUsername('');
-//       setMessages([]);
-//     };
-
-//     webSocket.current = ws;
-
-//     return function cleanup() {
-//       if (webSocket.current !== null) {
-//         webSocket.current.close();
-//       }
-//     };
-//   }, [username]);
 
   useEffect(() => {
     if (webSocket.current !== null) {
@@ -63,8 +23,6 @@ const BattleChat = ({ battle }) => {
   useEffect(() => {
     if (battle.heroHp !== undefined) {
       const newMessage = {
-        id: uuid(),
-        username: 'System',
         message: `Hero HP changed to ${battle.heroHp}`,
         created: new Date(),
       };
@@ -85,8 +43,6 @@ const BattleChat = ({ battle }) => {
 
     if (battle.monsterHp !== undefined) {
       const newMessage = {
-        id: uuid(),
-        username: 'System',
         message: `Monster HP changed to ${battle.monsterHp}`,
         created: new Date(),
       };
@@ -105,11 +61,6 @@ const BattleChat = ({ battle }) => {
       setMessages([newMessage, ...messages]);
     }
   }, [battle.heroHp, battle.monsterHp]);
-
-
-//   const handleLeave = () => {
-//     setUsername('');
-//   };
 
   return (
     <div>
