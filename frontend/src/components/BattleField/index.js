@@ -20,8 +20,10 @@ const BattleField = () => {
   const [isBattleUpdated, setIsBattleUpdated] = useState(false);
 
     const userId = useSelector(state => state.session.user.id)
-    const battleArr = useSelector(state => state.battles?.battles?.battle);
+    const battleArr = useSelector(state => state.battles?.battle);
     const [battle] = battleArr || [];
+    // console.log('[BATTLE]', battle)
+
     const heroesObj = useSelector(state => state.heroes?.userHeroes);
     const userHeroes = Object.values(heroesObj);
     const hero = userHeroes.find(hero => hero.id === battle?.heroId)

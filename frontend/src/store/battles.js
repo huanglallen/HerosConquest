@@ -82,7 +82,7 @@ const battlesReducer = (state = initialState, action) => {
     let battleState = {};
     switch(action.type) {
         case GET_BATTLE:
-            return { ...state, battles: action.payload};
+            return { ...state, ...action.payload};
         case CREATE_BATTLE:
             return { ...state, battles: action.payload };
         case UPDATE_BATTLE:

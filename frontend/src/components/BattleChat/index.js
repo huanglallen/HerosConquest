@@ -52,19 +52,28 @@ const BattleChat = ({ battle }) => {
         data: newMessage,
       });
 
-      console.log(`Sending message: ${jsonNewMessage}...`);
+      let newMsg = JSON.parse(jsonNewMessage);
+
+      console.log(`Sending message: ${newMsg.data.message}...`);
 
       if (webSocket.current) {
         webSocket.current.send(jsonNewMessage);
       }
 
-      setMessages([newMessage, ...messages]);
+      setMessages([...messages, newMsg]);
     }
   }, [battle.heroHp, battle.monsterHp]);
+  console.log('[MESSAGES]', messages)
 
   return (
     <div>
-      {/* Render your chat UI */}
+      {messages.map(msg => {
+        return (
+            <li>
+                {msg.data.message}
+            </li>
+        )
+      })}
     </div>
   );
 };
