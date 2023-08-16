@@ -9,23 +9,19 @@ const BattlesIndex = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [disabled, setDisabled] = useState(false);
-  const battleArr = useSelector(state => state.battles?.battles?.battle);
-  const [battle] = battleArr || [];
+  const userId = useSelector(state => state.session.user.id)
+  const battle = useSelector(state => state.battles.battle);
+  // const battle = battleArr.find(b => b.userId === userId);
+  console.log('[battle]', battle)
 
   useEffect(() => {
-      dispatch(getBattle());
+    if(userId) {
+      dispatch(getBattle(userId));
+    }
     }, [dispatch]);
 
-  useEffect(() => {
-    if (!battle) {
-      setDisabled(true);
-    } else {
-       setDisabled(false);
-      }
-  }, [battle]);
-
   const handleNewBattle = () => {
-    if(battle) {
+    if(Object.keys(battle).length) {
       dispatch(deleteBattle(battle.id));
     }
       history.push('/battles/new')
@@ -42,9 +38,9 @@ const BattlesIndex = () => {
       className="bi-new"
       onClick={handleNewBattle}>New Battle</button>
       <button
-      className={battle ? "bi-continue" : "bi-continue-d"}
+      className={battle.id ? "bi-continue" : "bi-continue-d"}
       onClick={handleContinue}
-      disabled={disabled}
+      disabled={!battle.id}
       >Continue</button>
     </div>
     );

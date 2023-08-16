@@ -28,8 +28,8 @@ const removeBattle = battleId => ({
 
 //THUNK
 
-export const getBattle = battles => async dispatch => {
-    const res = await csrfFetch(`/api/battles`);
+export const getBattle = userId => async dispatch => {
+    const res = await csrfFetch(`/api/battles/${userId}`);
     if(res.ok) {
         const data = await res.json();
         dispatch(loadBattle(data));
@@ -75,7 +75,7 @@ export const deleteBattle = battleId => async dispatch => {
 //REDUCER
 
 const initialState = {
-    battles: {}
+    battle: {}
 };
 
 const battlesReducer = (state = initialState, action) => {
@@ -84,11 +84,11 @@ const battlesReducer = (state = initialState, action) => {
         case GET_BATTLE:
             return { ...state, ...action.payload};
         case CREATE_BATTLE:
-            return { ...state, battles: action.payload };
+            return { ...state, ...action.payload };
         case UPDATE_BATTLE:
-            return { ...state, battles: action.payload };
+            return { ...state, ...action.payload };
         case DELETE_BATTLE:
-            return { ...state, battles: {}};
+            return { ...state, battle: {}};
         default:
             return state;
     };

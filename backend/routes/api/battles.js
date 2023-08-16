@@ -1,20 +1,24 @@
 const express = require('express');
 const router = express.Router();
 
-const { Battle, Hero, Monster } = require('../../db/models');
+const { Battle } = require('../../db/models');
 
-router.get('/', async (req, res) => {
-    const battle = await Battle.findAll();
+router.get('/:userId', async (req, res) => {
+    const { userId } = req.params;
+    const battle = await Battle.findOne({
+        where: { userId: userId }
+    });
 
-    if(!battle.length) return res.json({Battle: {}});
+    if(!battle) return res.json({battle: {}});
 
     return res.json({battle});
 });
 
 router.post('/create', async (req, res) => {
-    const { heroId, monsterId, heroHp, monsterHp } = req.body;
+    const { userId, heroId, monsterId, heroHp, monsterHp } = req.body;
 
     const errors = {};
+    if(!userId) errors.userId = "userId required";
     if(!heroId) errors.heroId = "heroId required";
     if(!monsterId) errors.monsterId = "monsterId required";
     if(!heroHp) errors.heroHp = "heroHp required";
@@ -28,6 +32,7 @@ router.post('/create', async (req, res) => {
     };
 
     const newBattle = await Battle.create({
+        userId,
         heroId,
         monsterId,
         heroHp,

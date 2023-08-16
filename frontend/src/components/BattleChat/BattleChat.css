@@ -1,3 +1,7 @@
+.chat-wrapper {
+    list-style-type: none;
+}
+
 .hero-chat {
     color: var(--hero);
     padding: 5px 0;

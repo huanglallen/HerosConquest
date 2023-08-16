@@ -75,6 +75,10 @@
 }
 
 .field-chat {
+    max-height: 86%;
+    overflow: hidden;
+    overflow-y: auto;
+    flex: 1;
     margin: 2rem 1rem;
     padding: 10px;
     width: 25%;

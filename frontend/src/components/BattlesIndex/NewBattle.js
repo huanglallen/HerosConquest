@@ -27,6 +27,7 @@ const NewBattle = () => {
 
     const handleBattleClick = async () => {
         const newBattle = {
+            userId: user.id,
             heroId: battleHero.id,
             monsterId: battleMonster.id,
             heroHp: battleHero.hp,

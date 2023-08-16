@@ -17,9 +17,9 @@ const BattleField = () => {
     const history = useHistory();
     const { battleId } = useParams();
     const { setModalContent } = useModal();
-  const [isBattleUpdated, setIsBattleUpdated] = useState(false);
+    const [isBattleUpdated, setIsBattleUpdated] = useState(false);
 
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state.session.user?.id)
     const battleArr = useSelector(state => state.battles?.battle);
     const [battle] = battleArr || [];
 
