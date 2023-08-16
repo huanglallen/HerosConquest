@@ -8,11 +8,8 @@ import "./BattlesIndex.css";
 const BattlesIndex = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [disabled, setDisabled] = useState(false);
   const userId = useSelector(state => state.session.user.id)
   const battle = useSelector(state => state.battles.battle);
-  // const battle = battleArr.find(b => b.userId === userId);
-  console.log('[battle]', battle)
 
   useEffect(() => {
     if(userId) {

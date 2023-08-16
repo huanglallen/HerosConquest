@@ -4,6 +4,8 @@ import './BattleChat.css';
 
 const BattleChat = ({ battle }) => {
     const [messages, setMessages] = useState([]);
+    const [healthH, setHealthH] = useState(battle.heroHp);
+    const [healthM, setHealthM] = useState(battle.monsterHp);
     const webSocket = useRef(null);
 
     const heroesObj = useSelector(state => state.heroes?.userHeroes);
@@ -29,7 +31,7 @@ const BattleChat = ({ battle }) => {
 //   }, [messages]);
 
   useEffect(() => {
-    if (battle.heroHp) {
+    if (battle.monsterHp !== healthM) {
         const newMessage = {
             type: `hero`,
             message: `${hero.name} has attacked! ${monster.name} lost 5 hp`,
@@ -46,11 +48,11 @@ const BattleChat = ({ battle }) => {
         if (webSocket.current) {
             webSocket.current.send(jsonNewMessage);
         }
-
+        setHealthM(battle.monsterHp);
         setMessages(prevMessages => [...prevMessages, newMessage]);
         }
 
-        if (battle.monsterHp) {
+        if (battle.heroHp !== healthH) {
         const newMessage = {
             type: `monster`,
             message: `${monster.name} has attacked! ${hero.name} lost 5 hp.`,
@@ -68,7 +70,7 @@ const BattleChat = ({ battle }) => {
         if (webSocket.current) {
             webSocket.current.send(jsonNewMessage);
         }
-
+        setHealthH(battle.heroHp);
         //set back to other after updateBattle is separated
         //calls function to add time inbetween
         setMessages(prevMessages => [...prevMessages, newMessage]);

@@ -20,8 +20,7 @@ const BattleField = () => {
     const [isBattleUpdated, setIsBattleUpdated] = useState(false);
 
     const userId = useSelector(state => state.session.user?.id)
-    const battleArr = useSelector(state => state.battles?.battle);
-    const [battle] = battleArr || [];
+    const battle = useSelector(state => state.battles?.battle);
 
     const heroesObj = useSelector(state => state.heroes?.userHeroes);
     const userHeroes = Object.values(heroesObj);
@@ -33,15 +32,15 @@ const BattleField = () => {
 
 
     useEffect(() => {
-        dispatch(getBattle());
+        dispatch(getBattle(userId));
         dispatch(getUserHeroes(userId));
         dispatch(getMonsters());
     }, [dispatch, userId]);
 
     useEffect(() => {
         if (isBattleUpdated) {
-          // Fetch fresh battle data
-          dispatch(getBattle());
+          // Fetch updated battle data
+          dispatch(getBattle(userId));
           setIsBattleUpdated(false); // Reset the state after refetching
         }
       }, [dispatch, isBattleUpdated]);
@@ -57,6 +56,7 @@ const BattleField = () => {
         e.preventDefault();
         const updatedBattle = {
             id: battle.id,
+            userId: userId,
             heroId: battle.heroId,
             monsterId: battle.monsterId,
             heroHp: battle.heroHp - 5,
