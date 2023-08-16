@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import './BattleChat.css';
 
 const BattleChat = ({ battle }) => {
-    const dispatch = useDispatch();
     const [messages, setMessages] = useState([]);
     const webSocket = useRef(null);
 
@@ -14,23 +14,24 @@ const BattleChat = ({ battle }) => {
     const monsters = Object.values(monstersObj);
     const monster = monsters.find(monster => monster.id === battle?.monsterId);
 
-  useEffect(() => {
-    if (webSocket.current !== null) {
-      webSocket.current.onmessage = (e) => {
-        console.log(`Processing incoming message ${e.data}...`);
+//   useEffect(() => {
+//     if (webSocket.current !== null) {
+//       webSocket.current.onmessage = (e) => {
+//         console.log(`Processing incoming message ${e.data}...`);
 
-        const chatMessage = JSON.parse(e.data);
-        const message = chatMessage.data;
-        message.created = new Date(message.created);
+//         const chatMessage = JSON.parse(e.data);
+//         const message = chatMessage.data;
+//         message.created = new Date(message.created);
 
-        setMessages([message, ...messages]);
-      };
-    }
-  }, [messages]);
+//         setMessages([message, ...messages]);
+//       };
+//     }
+//   }, [messages]);
 
   useEffect(() => {
     if (battle.heroHp) {
         const newMessage = {
+            type: `hero`,
             message: `${hero.name} has attacked! ${monster.name} lost 5 hp`,
             created: new Date(),
         };
@@ -39,18 +40,19 @@ const BattleChat = ({ battle }) => {
             type: 'send-chat-message',
             data: newMessage,
         });
-
-        console.log(`Sending message: ${jsonNewMessage}...`);
+        let newMsg = JSON.parse(jsonNewMessage);
+        console.log(`Sending message: ${newMsg.data.message}...`);
 
         if (webSocket.current) {
             webSocket.current.send(jsonNewMessage);
         }
 
-        setMessages([newMessage, ...messages]);
+        setMessages(prevMessages => [...prevMessages, newMessage]);
         }
 
         if (battle.monsterHp) {
         const newMessage = {
+            type: `monster`,
             message: `${monster.name} has attacked! ${hero.name} lost 5 hp.`,
             created: new Date(),
         };
@@ -61,24 +63,27 @@ const BattleChat = ({ battle }) => {
         });
 
         let newMsg = JSON.parse(jsonNewMessage);
-
         console.log(`Sending message: ${newMsg.data.message}...`);
 
         if (webSocket.current) {
             webSocket.current.send(jsonNewMessage);
         }
 
-        setMessages([...messages, newMsg]);
+        //set back to other after updateBattle is separated
+        //calls function to add time inbetween
+        setMessages(prevMessages => [...prevMessages, newMessage]);
+        // setMessages([...messages, newMsg]);
         }
     }, [battle.heroHp, battle.monsterHp]);
+
     console.log('[MESSAGES]', messages)
 
   return (
-    <div>
+    <div className='chat-wrapper'>
       {messages.map(msg => {
         return (
-            <li>
-                {msg.data.message}
+            <li className={`${msg.type}-chat`}>
+                {msg.message}
             </li>
         )
       })}
