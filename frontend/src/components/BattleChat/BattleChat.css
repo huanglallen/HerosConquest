@@ -1,0 +1,9 @@
+.hero-chat {
+    color: var(--hero);
+    padding: 5px 0;
+}
+
+.monster-chat {
+    color: var(--monster);
+    padding: 5px 0;
+}
