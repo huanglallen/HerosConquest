@@ -34,7 +34,7 @@ const BattleChat = ({ battle }) => {
     if (battle.monsterHp !== healthM) {
         const newMessage = {
             type: `hero`,
-            message: `${hero.name} has attacked! ${monster.name} lost 5 hp`,
+            message: `${hero.name} has attacked! ${monster.name} lost 5 hp.`,
             created: new Date(),
         };
 
