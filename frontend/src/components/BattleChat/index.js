@@ -72,7 +72,7 @@ const BattleChat = ({ battle }) => {
         }
         setHealthH(battle.heroHp);
         //set back to other after updateBattle is separated
-        //calls function to add time inbetween
+        //calls function to add delay for other message
         setMessages(prevMessages => [...prevMessages, newMessage]);
         // setMessages([...messages, newMsg]);
         }
