@@ -77,16 +77,38 @@ const BattleField = () => {
     return (
         <div id="field">
             <body className="field-body">
-                <header className="field-header">
-                    <div className="field-hero">
-                        {portraits(hero.heroClass)}
-                        <p>{hero.name}: {battle.heroHp} / {hero.hp}</p>
+            <header className="field-header">
+            <div className="field-hero">
+                {portraits(hero.heroClass)}
+                <div className="field-hero-info">
+                    <p className="field-name">{hero.name}</p>
+                    <div className="hp-bar">
+                        <div className={`hp-text ${battle.heroHp <= 0 ? 'red' : ''}`}>
+                            {battle.heroHp}
+                        </div>
+                        <div
+                        className={`hp-bar-inner ${battle.heroHp <= 0 ? 'red' : ''}`}
+                        style={{ width: `${(battle.heroHp / hero.hp) * 100}%` }}
+                        ></div>
                     </div>
-                    <div className="field-monster">
-                        <p>{monster.name}: {battle.monsterHp} / {monster.hp}</p>
-                        {portraits(monster.name)}
+                </div>
+            </div>
+            <div className="field-monster">
+                <div className="field-monster-info">
+                    <p className="field-name">{monster.name}</p>
+                    <div className="hp-bar">
+                        <div className={`hp-text ${battle.monsterHp <= 0 ? 'red' : ''}`}>
+                            {battle.monsterHp}
+                        </div>
+                        <div
+                            className={`hp-bar-inner ${battle.monsterHp <= 0 ? 'red' : ''}`}
+                            style={{ width: `${(battle.monsterHp / monster.hp) * 100}%` }}
+                        ></div>
                     </div>
-                </header>
+                </div>
+                {portraits(monster.name)}
+            </div>
+            </header>
                 <div className="field-fight">
                     <div className="field-hero-sprite">
                         {sprites(hero.heroClass)}
