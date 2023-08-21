@@ -1,94 +1,106 @@
 #field {
     display: flex;
     flex-direction: row;
-  }
+}
 
-  .field-body {
+.field-body {
     display: flex;
     flex-direction: column;
     width: 70%;
-  }
+}
 
-  .field-header {
+.field-header {
     display: flex;
     margin: 2rem 0 0.5rem 0;
-  }
+}
 
-  .field-header > div > p {
+.field-header > div > p {
     margin: auto 0 0 0;
-  }
+}
 
-  .field-name {
+.field-name {
     font-size: 18px;
     margin-bottom: 5px;
-  }
+}
 
-  .field-hero {
+.field-hero {
     display: flex;
     margin: auto auto auto 2rem;
     align-items: center;
-  }
+}
 
-
-  .field-hero-info {
+.field-hero-info {
     margin-left: 10px;
-  }
+}
 
-  .field-hero > img {
+.field-hero > img {
     height: 5rem;
     border: 5px black solid;
     border-radius: 10px;
-  }
+}
 
-  .field-monster {
+.field-monster {
     display: flex;
     margin: auto 0 auto auto;
     align-items: center;
-  }
+}
 
-  .field-monster-info {
+.field-monster-info {
     margin-right: 10px;
-  }
+}
 
-  .field-monster > img {
+.field-monster > img {
     height: 5rem;
     border: 5px black solid;
     border-radius: 10px;
-  }
+}
 
-  .hp-bar {
-    height: 20px;
-    width: 150px;
-    background-color: green;
+.hp-bar {
+    height: 2rem;
+    width: 15rem;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
+    position: relative;
     overflow: hidden;
-    /* margin-left: 10px; */
-    transition: width 0.5s ease, background-color 0.5s ease;
-    position: relative; /* To position the HP text */
-  }
+    border: 3px black solid;
+}
 
-  .hp-bar.red {
-    background-color: red;
-  }
+.hp-bar-inner-wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: red; /* Red color beneath */
+    transform-origin: right;
+    transform: scaleX(1); /* Scales down the red bar */
+    transition: transform 0.5s ease;
+}
 
-  .hp-text {
+.hp-bar-inner {
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    transition: width 0.5s ease;
+}
+
+.hp-text {
     margin: 0 5px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    opacity: 0; /* Initially hidden */
+    opacity: 0;
+    z-index: 1;
     transition: opacity 0.5s ease;
-  }
+    cursor: default;
+}
 
-  .hp-bar:hover .hp-text {
+.hp-bar:hover .hp-text {
     opacity: 1; /* Display on hover */
-  }
+}
 
-  .field-fight {
+.field-fight {
     background-image: url('../../images/bg/gate-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -98,30 +110,30 @@
     justify-content: space-around;
     margin-left: 2rem;
     border: 5px black solid;
-  }
+}
 
-  .field-fight > * {
+.field-fight > * {
     display: flex;
     justify-content: center;
     margin: 12rem auto 3rem auto;
-  }
+}
 
-  .field-hero-sprite {
+.field-hero-sprite {
     width: 35%;
     height: auto;
-  }
+}
 
-  .field-monster-sprite {
+.field-monster-sprite {
     width: 35%;
-  }
+}
 
-  .field-footer > button {
+.field-footer > button {
     margin-left: 3rem;
     font-size: 18px;
     padding: 0.5rem 2rem;
-  }
+}
 
-  .field-chat {
+.field-chat {
     max-height: 86%;
     overflow: hidden;
     overflow-y: auto;
@@ -131,4 +143,4 @@
     width: 25%;
     background-color: var(--dark);
     border: 5px black solid;
-  }
+}

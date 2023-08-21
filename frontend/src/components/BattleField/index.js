@@ -84,12 +84,14 @@ const BattleField = () => {
                     <p className="field-name">{hero.name}</p>
                     <div className="hp-bar">
                         <div className={`hp-text ${battle.heroHp <= 0 ? 'red' : ''}`}>
-                            {battle.heroHp}
+                            {battle.heroHp} / {hero.hp}
                         </div>
-                        <div
-                        className={`hp-bar-inner ${battle.heroHp <= 0 ? 'red' : ''}`}
-                        style={{ width: `${(battle.heroHp / hero.hp) * 100}%` }}
-                        ></div>
+                        <div className="hp-bar-inner-wrapper">
+                            <div
+                            className={`hp-bar-inner ${battle.heroHp <= 0 ? 'red' : ''}`}
+                            style={{ width: `${(battle.heroHp / hero.hp) * 100}%` }}
+                            ></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,12 +100,14 @@ const BattleField = () => {
                     <p className="field-name">{monster.name}</p>
                     <div className="hp-bar">
                         <div className={`hp-text ${battle.monsterHp <= 0 ? 'red' : ''}`}>
-                            {battle.monsterHp}
+                            {battle.monsterHp} / {monster.hp}
                         </div>
-                        <div
+                        <div className="hp-bar-inner-wrapper">
+                            <div
                             className={`hp-bar-inner ${battle.monsterHp <= 0 ? 'red' : ''}`}
                             style={{ width: `${(battle.monsterHp / monster.hp) * 100}%` }}
-                        ></div>
+                            ></div>
+                        </div>
                     </div>
                 </div>
                 {portraits(monster.name)}
