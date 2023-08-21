@@ -144,3 +144,8 @@
     background-color: var(--dark);
     border: 5px black solid;
 }
+
+.field-att-d {
+    cursor: default;
+    color: darkgray;
+}

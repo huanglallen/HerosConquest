@@ -18,6 +18,7 @@ const BattleField = () => {
     const { battleId } = useParams();
     const { setModalContent } = useModal();
     const [isBattleUpdated, setIsBattleUpdated] = useState(false);
+    const [attBtn, setAttBtn] = useState(false);
 
     const userId = useSelector(state => state.session.user?.id)
     const battle = useSelector(state => state.battles?.battle);
@@ -55,6 +56,12 @@ const BattleField = () => {
     const handleAttack = async (e) => {
         e.preventDefault();
 
+        //prevent att button spam
+        setAttBtn(true);
+        setTimeout(() => {
+            setAttBtn(false);
+        },2000);
+
         // Create fresh copies of the battle, modifying only the necessary attributes
         const updatedMonsterBattle = {
             ...battle,
@@ -63,19 +70,22 @@ const BattleField = () => {
 
         await dispatch(updateBattle(updatedMonsterBattle));
         setIsBattleUpdated(true)
-        setTimeout(async () => {
-            // Create another fresh copy of the battle for the second update
-            const updatedHeroBattle = {
-                ...updatedMonsterBattle, // Use the previously updated data
-                heroHp: updatedMonsterBattle.heroHp - 5,
-            };
 
-            // Dispatch the second updateBattle action
-            await dispatch(updateBattle(updatedHeroBattle));
+        if(battle.monsterHp > 0) {
+            setTimeout(async () => {
+                // Create another fresh copy of the battle for the second update
+                const updatedHeroBattle = {
+                    ...updatedMonsterBattle, // Use the previously updated data
+                    heroHp: updatedMonsterBattle.heroHp - 5,
+                };
 
-            // You might want to reset the state after both updates
-            setIsBattleUpdated(true);
-        }, 2000);
+                // Dispatch the second updateBattle action
+                await dispatch(updateBattle(updatedHeroBattle));
+
+                // You might want to reset the state after both updates
+                setIsBattleUpdated(true);
+            }, 2000);
+        }
     };
 
     const handleRun = (e) => {
@@ -135,8 +145,9 @@ const BattleField = () => {
                 </div>
                 <footer className="field-footer">
                     <button
-                    className="field-attack"
+                    className={!attBtn ? 'field-att' : 'field-att-d'}
                     onClick={handleAttack}
+                    disabled={attBtn}
                     >Attack</button>
                     <button
                     className="field-run"
