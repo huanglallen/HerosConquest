@@ -84,7 +84,7 @@ const BattleField = () => {
 
                 // You might want to reset the state after both updates
                 setIsBattleUpdated(true);
-            }, 2000);
+            }, 1500);
         }
     };
 
