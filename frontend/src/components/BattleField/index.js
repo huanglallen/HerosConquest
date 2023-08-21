@@ -54,16 +54,28 @@ const BattleField = () => {
 
     const handleAttack = async (e) => {
         e.preventDefault();
-        const updatedBattle = {
-            id: battle.id,
-            userId: userId,
-            heroId: battle.heroId,
-            monsterId: battle.monsterId,
-            heroHp: battle.heroHp - 5,
-            monsterHp: battle.monsterHp - 5
-        }
-        await dispatch(updateBattle(updatedBattle));
-        setIsBattleUpdated(true);
+
+        // Create fresh copies of the battle, modifying only the necessary attributes
+        const updatedMonsterBattle = {
+            ...battle,
+            monsterHp: battle.monsterHp - 5,
+        };
+
+        await dispatch(updateBattle(updatedMonsterBattle));
+        setIsBattleUpdated(true)
+        setTimeout(async () => {
+            // Create another fresh copy of the battle for the second update
+            const updatedHeroBattle = {
+                ...updatedMonsterBattle, // Use the previously updated data
+                heroHp: updatedMonsterBattle.heroHp - 5,
+            };
+
+            // Dispatch the second updateBattle action
+            await dispatch(updateBattle(updatedHeroBattle));
+
+            // You might want to reset the state after both updates
+            setIsBattleUpdated(true);
+        }, 2000);
     };
 
     const handleRun = (e) => {

@@ -3,20 +3,22 @@ import { useSelector } from 'react-redux';
 import './BattleChat.css';
 
 const BattleChat = ({ battle }) => {
-    const [messages, setMessages] = useState([]);
-    const [healthH, setHealthH] = useState(battle.heroHp);
-    const [healthM, setHealthM] = useState(battle.monsterHp);
-    const webSocket = useRef(null);
 
-    const heroesObj = useSelector(state => state.heroes?.userHeroes);
-    const userHeroes = Object.values(heroesObj);
-    const hero = userHeroes.find(hero => hero.id === battle?.heroId);
+  const heroesObj = useSelector(state => state.heroes?.userHeroes);
+  const userHeroes = Object.values(heroesObj);
+  const hero = userHeroes.find(hero => hero.id === battle?.heroId);
 
-    const monstersObj = useSelector(state => state.monsters?.monsters);
-    const monsters = Object.values(monstersObj);
-    const monster = monsters.find(monster => monster.id === battle?.monsterId);
+  const monstersObj = useSelector(state => state.monsters?.monsters);
+  const monsters = Object.values(monstersObj);
+  const monster = monsters.find(monster => monster.id === battle?.monsterId);
 
-//   useEffect(() => {
+  const [messages, setMessages] = useState([
+    {message: `Battle started between ${hero.name} and ${monster.name}!`}
+  ]);
+  const [healthH, setHealthH] = useState(battle.heroHp);
+  const [healthM, setHealthM] = useState(battle.monsterHp);
+  const webSocket = useRef(null);
+  //   useEffect(() => {
 //     if (webSocket.current !== null) {
 //       webSocket.current.onmessage = (e) => {
 //         console.log(`Processing incoming message ${e.data}...`);
