@@ -10,6 +10,7 @@ import Home from "./components/Home";
 import BattlesIndex from "./components/BattlesIndex";
 import NewBattle from "./components/BattlesIndex/NewBattle";
 import BattleField from "./components/BattleField";
+import ChatIndex from "./components/ChatIndex";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
             <Route exact path = '/battles/new' component={NewBattle}/>
             <Route expact path = '/battles/fight/:battleId' component={BattleField}/>
             <Route exact path='/battles' component={BattlesIndex}/>
+            <Route exact path='/chat' component={ChatIndex}/>
             <Route exact path='/' component={Home}/>
           </Layout>
         </Switch>
