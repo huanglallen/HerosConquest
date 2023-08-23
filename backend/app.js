@@ -85,7 +85,7 @@ const WebSocket = require('ws');
 //   });
 // } else {
   const wss = new WebSocket.Server({
-    port: 5055,
+    port: 8080,
     path: '/ws',
     clientTracking: true
   });

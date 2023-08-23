@@ -10,7 +10,9 @@ const Chat = () => {
 
 
     useEffect(() => {
-        const newSocket = new WebSocket('ws://heros-conquest.onrender.com:5055/ws');
+      //for render live
+        const newSocket = new WebSocket('ws://0.0.0.0:8080/ws');
+        // const newSocket = new WebSocket('ws://localhost:5055/ws');
 
         newSocket.onopen = () => {
             console.log('WebSocket connected');
