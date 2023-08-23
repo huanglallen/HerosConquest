@@ -4,24 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteBattle, getBattle } from "../../store/battles";
 import "./BattlesIndex.css";
 
-
 const BattlesIndex = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const userId = useSelector(state => state.session.user.id)
+  const userId = useSelector(state => state.session.user.id);
   const battle = useSelector(state => state.battles.battle);
+  const heroesObj = useSelector(state => state.heroes.userHeroes);
+  const userHeroes = Object.values(heroesObj);
+
+  console.log('battle', battle)
 
   useEffect(() => {
     if(userId) {
       dispatch(getBattle(userId));
-    }
+    };
     }, [dispatch]);
 
   const handleNewBattle = () => {
+    if(!userHeroes.length) {
+      return window.alert("You cannot start your battle without a hero!");
+    }
     if(Object.keys(battle).length) {
       dispatch(deleteBattle(battle.id));
-    }
-      history.push('/battles/new')
+    };
+    history.push('/battles/new');
   };
 
   const handleContinue = () => {

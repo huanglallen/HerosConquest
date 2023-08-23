@@ -86,7 +86,7 @@ const battlesReducer = (state = initialState, action) => {
         case CREATE_BATTLE:
             return { ...state, ...action.payload };
         case UPDATE_BATTLE:
-            return { ...state, ...action.payload };
+            return { ...state, battle: action.payload };
         case DELETE_BATTLE:
             return { ...state, battle: {}};
         default:

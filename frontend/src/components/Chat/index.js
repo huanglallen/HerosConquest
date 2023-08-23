@@ -34,14 +34,7 @@ const Chat = () => {
     }, []);
 
     const handleMessage = message => {
-        console.log('peter made me')
-        // setMessages(prevMessages => [...prevMessages, message]);
-        setMessages(prevMessages => {
-            console.log('Previous messages:', prevMessages);
-            const updatedMessages = [...prevMessages, message];
-            console.log('Updated messages:', updatedMessages);
-            return updatedMessages;
-        });
+        setMessages(prevMessages => [...prevMessages, message]);
     };
 
     const handleInputChange = event => {

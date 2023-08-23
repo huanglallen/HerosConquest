@@ -19,6 +19,7 @@ const BattleField = () => {
     const { setModalContent } = useModal();
     const [isBattleUpdated, setIsBattleUpdated] = useState(false);
     const [attBtn, setAttBtn] = useState(false);
+    const [battleFinished, setBattleFinished] = useState(false);
 
     const userId = useSelector(state => state.session.user?.id)
     const battle = useSelector(state => state.battles?.battle);
@@ -49,44 +50,49 @@ const BattleField = () => {
       //Battle finished
       useEffect(() => {
         if((battle && battle.heroHp <= 0) || (battle && battle.monsterHp <= 0)) {
-            setModalContent(<BattleCompleted battle={battle} type={battle.heroHp <= 0 ? monster.name : hero.name}/>)
+            return setModalContent(<BattleCompleted battle={battle} type={battle.heroHp <= 0 ? monster.name : hero.name}/>)
         }
       }, [battle])
 
-    const handleAttack = async (e) => {
+      const handleAttack = async (e) => {
         e.preventDefault();
 
-        //prevent att button spam
+        if (battle.monsterHp <= 0) {
+            return;
+        }
+
+        // prevent att button spam
         setAttBtn(true);
         setTimeout(() => {
             setAttBtn(false);
-        },2000);
+        }, 2000);
 
-        // Create fresh copies of the battle, modifying only the necessary attributes
         const updatedMonsterBattle = {
             ...battle,
             monsterHp: battle.monsterHp - 5,
         };
 
         await dispatch(updateBattle(updatedMonsterBattle));
-        setIsBattleUpdated(true)
+        setIsBattleUpdated(true);
 
-        if(battle.monsterHp > 0) {
+        if (updatedMonsterBattle.monsterHp > 0) {
             setTimeout(async () => {
-                // Create another fresh copy of the battle for the second update
-                const updatedHeroBattle = {
-                    ...updatedMonsterBattle, // Use the previously updated data
-                    heroHp: updatedMonsterBattle.heroHp - 5,
-                };
+                // Check if monster's HP is still greater than 0 before attacking
+                if (updatedMonsterBattle.monsterHp > 0) {
+                    const updatedHeroBattle = {
+                        ...updatedMonsterBattle,
+                        heroHp: updatedMonsterBattle.heroHp - 5,
+                    };
 
-                // Dispatch the second updateBattle action
-                await dispatch(updateBattle(updatedHeroBattle));
-
-                // You might want to reset the state after both updates
-                setIsBattleUpdated(true);
+                    if (updatedMonsterBattle.monsterHp > 0) {
+                        await dispatch(updateBattle(updatedHeroBattle));
+                        setIsBattleUpdated(true);
+                    }
+                }
             }, 1500);
         }
     };
+
 
     const handleRun = (e) => {
         e.preventDefault();

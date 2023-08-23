@@ -8,16 +8,15 @@ import "./HeroesIndex.css";
 
 const HeroesIndex = () => {
     const dispatch = useDispatch();
-    const userId = useSelector(state => state.session.user.id);
+    const userId = useSelector(state => state.session.user?.id);
     const heroesObj = useSelector(state => state.heroes.userHeroes);
     const userHeroes = Object.values(heroesObj);
 
+    console.log(userHeroes)
 
     useEffect(() => {
         dispatch(getUserHeroes(userId));
     }, [dispatch, userId]);
-
-    if(!userId) return null;
 
     return (
         <div className="heroes-wrapper">
