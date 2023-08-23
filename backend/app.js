@@ -46,9 +46,9 @@ const routes = require('./routes');
 app.use(routes);
 
 //WebSockets
-const { createServer } = require('http');
-const WebSocket = require('ws');
-  const server = createServer(app);
+// const { createServer } = require('http');
+// const WebSocket = require('ws');
+//   const server = createServer(app);
 
 // if(isProduction) {
 //   const wss = new WebSocket.Server({
@@ -84,12 +84,15 @@ const WebSocket = require('ws');
 //     });
 //   });
 // } else {
-  const wss = new WebSocket.Server({ server });
-  // const wss = new WebSocket.Server({
-  //   port: 8080,
-  //   path: '/ws',
-  //   clientTracking: true
-  // });
+
+const { Server } = require('ws');
+const http = require('http');
+const server = http.createServer(app);
+const wss = new Server({
+  server,
+  path:'/ws',
+  clientTracking: true
+});
 
   wss.on('connection', ws => {
     ws.on('message', jsonData => {
@@ -107,9 +110,7 @@ const WebSocket = require('ws');
 
       wss.clients.forEach(client => {
         //Ready states include: CONNECTING, OPEN, CLOSING, CLOSED
-        if(client.readyState === WebSocket.OPEN) {
-          client.send(jsonAddChatMessage);
-        };
+        client.send(message);
       });
     });
 

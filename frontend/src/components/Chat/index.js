@@ -11,7 +11,7 @@ const Chat = () => {
 
     useEffect(() => {
       //for render live
-        const newSocket = new WebSocket('wss://heros-conquest.onrender.com');
+        const newSocket = new WebSocket('wss://localhost:10000/ws');
         // const newSocket = new WebSocket('ws://localhost:5055/ws');
 
         newSocket.onopen = () => {
