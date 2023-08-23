@@ -49,7 +49,12 @@ app.use(routes);
 const { createServer } = require('http');
 const WebSocket = require('ws');
 const server = createServer(app);
-const wss = new WebSocket.Server({ server });
+const wss = new WebSocket.Server({
+  server,
+  path: '/ws',
+  clientTracking: true
+});
+
 
 wss.on('connection', ws => {
   ws.on('message', jsonData => {

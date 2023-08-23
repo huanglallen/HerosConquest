@@ -1,0 +1,33 @@
+#chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 65%;
+    margin: 1.5rem auto;
+}
+
+.chat-title {
+    margin: auto;
+    justify-content: center;
+    padding: 10px;
+}
+
+.chat-body {
+    border: red 1px solid;
+    height: 60%;
+    width: 100%;
+    margin: auto;
+    padding: auto;
+}
+
+.chat-play {
+    display: flex;
+    border: black solid 3px;
+    border-radius: 15px;
+    padding: 5px;
+    background-color: rgb(72, 72, 230);
+}
+
+.chat-input {
+    border-radius: 15px;
+}

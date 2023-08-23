@@ -18,19 +18,7 @@ const BattleChat = ({ battle }) => {
   const [healthH, setHealthH] = useState(battle.heroHp);
   const [healthM, setHealthM] = useState(battle.monsterHp);
   const webSocket = useRef(null);
-  //   useEffect(() => {
-//     if (webSocket.current !== null) {
-//       webSocket.current.onmessage = (e) => {
-//         console.log(`Processing incoming message ${e.data}...`);
-
-//         const chatMessage = JSON.parse(e.data);
-//         const message = chatMessage.data;
-//         message.created = new Date(message.created);
-
-//         setMessages([message, ...messages]);
-//       };
-//     }
-//   }, [messages]);
+  
 
   useEffect(() => {
     if (battle.monsterHp !== healthM) {
