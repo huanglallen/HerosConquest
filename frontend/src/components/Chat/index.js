@@ -9,8 +9,7 @@ const Chat = () => {
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
-        //???
-        const newSocket = new WebSocket('ws://localhost:8000/ws');
+        const newSocket = new WebSocket('ws://localhost:8080/ws');
 
         newSocket.onopen = () => {
             console.log('WebSocket connected');
@@ -18,7 +17,8 @@ const Chat = () => {
 
         newSocket.onmessage = e => {
             const message = JSON.parse(e.data);
-            handleMessage(message);
+            console.log('e.data', message.data)
+            handleMessage(message.data);
         };
 
         newSocket.onclose = () => {
@@ -33,7 +33,14 @@ const Chat = () => {
     }, []);
 
     const handleMessage = message => {
-        setMessages(prevMessages => [...prevMessages, message]);
+        console.log('peter made me')
+        // setMessages(prevMessages => [...prevMessages, message]);
+        setMessages(prevMessages => {
+            console.log('Previous messages:', prevMessages);
+            const updatedMessages = [...prevMessages, message];
+            console.log('Updated messages:', updatedMessages);
+            return updatedMessages;
+        });
     };
 
     const handleInputChange = event => {
@@ -62,7 +69,7 @@ const Chat = () => {
             </h1>
           <div className='chat-body'>
             {messages.map((message, index) => (
-              <div key={index}>{message.data}</div>
+              <div key={index} className=''>{message}</div>
             ))}
           </div>
           <div className='chat-play'>

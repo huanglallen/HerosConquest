@@ -50,7 +50,7 @@ const { createServer } = require('http');
 const WebSocket = require('ws');
 const server = createServer(app);
 const wss = new WebSocket.Server({
-  server,
+  port: 8080,
   path: '/ws',
   clientTracking: true
 });
