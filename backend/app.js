@@ -49,74 +49,75 @@ app.use(routes);
 const { createServer } = require('http');
 const WebSocket = require('ws');
 
-if(isProduction) {
-  const server = createServer(app);
-  const wss = new WebSocket.Server({
-    port: server,
-    path: '/ws',
-    clientTracking: true
-  });
+// if(isProduction) {
+//   const server = createServer(app);
+//   const wss = new WebSocket.Server({
+//     port: server,
+//     path: '/ws',
+//     clientTracking: true
+//   });
 
-  wss.on('connection', ws => {
-    ws.on('message', jsonData => {
-      console.log(`processing incoming message: ${jsonData}...`);
-      const message = JSON.parse(jsonData);
-      const chatMessage = message.data;
+//   wss.on('connection', ws => {
+//     ws.on('message', jsonData => {
+//       console.log(`processing incoming message: ${jsonData}...`);
+//       const message = JSON.parse(jsonData);
+//       const chatMessage = message.data;
 
-      const addChatMessage = {
-        type: 'add-chat-message',
-        data: chatMessage
+//       const addChatMessage = {
+//         type: 'add-chat-message',
+//         data: chatMessage
+//       };
+
+//       const jsonAddChatMessage = JSON.stringify(addChatMessage);
+//       console.log(`Sending Message: ${jsonAddChatMessage}...`);
+
+//       wss.clients.forEach(client => {
+//         //Ready states include: CONNECTING, OPEN, CLOSING, CLOSED
+//         if(client.readyState === WebSocket.OPEN) {
+//           client.send(jsonAddChatMessage);
+//         };
+//       });
+//     });
+
+//     ws.on('close', e => {
+//       console.log(e)
+//     });
+//   });
+// } else {
+//   console.log('app', app)
+// }
+const wss = new WebSocket.Server({
+  port: 8080,
+  path: '/ws',
+  clientTracking: true
+});
+
+wss.on('connection', ws => {
+  ws.on('message', jsonData => {
+    console.log(`processing incoming message: ${jsonData}...`);
+    const message = JSON.parse(jsonData);
+    const chatMessage = message.data;
+
+    const addChatMessage = {
+      type: 'add-chat-message',
+      data: chatMessage
+    };
+
+    const jsonAddChatMessage = JSON.stringify(addChatMessage);
+    console.log(`Sending Message: ${jsonAddChatMessage}...`);
+
+    wss.clients.forEach(client => {
+      //Ready states include: CONNECTING, OPEN, CLOSING, CLOSED
+      if(client.readyState === WebSocket.OPEN) {
+        client.send(jsonAddChatMessage);
       };
-
-      const jsonAddChatMessage = JSON.stringify(addChatMessage);
-      console.log(`Sending Message: ${jsonAddChatMessage}...`);
-
-      wss.clients.forEach(client => {
-        //Ready states include: CONNECTING, OPEN, CLOSING, CLOSED
-        if(client.readyState === WebSocket.OPEN) {
-          client.send(jsonAddChatMessage);
-        };
-      });
-    });
-
-    ws.on('close', e => {
-      console.log(e)
     });
   });
-} else {
-  const wss = new WebSocket.Server({
-    port: 8080,
-    path: '/ws',
-    clientTracking: true
+
+  ws.on('close', e => {
+    console.log(e)
   });
-
-  wss.on('connection', ws => {
-    ws.on('message', jsonData => {
-      console.log(`processing incoming message: ${jsonData}...`);
-      const message = JSON.parse(jsonData);
-      const chatMessage = message.data;
-
-      const addChatMessage = {
-        type: 'add-chat-message',
-        data: chatMessage
-      };
-
-      const jsonAddChatMessage = JSON.stringify(addChatMessage);
-      console.log(`Sending Message: ${jsonAddChatMessage}...`);
-
-      wss.clients.forEach(client => {
-        //Ready states include: CONNECTING, OPEN, CLOSING, CLOSED
-        if(client.readyState === WebSocket.OPEN) {
-          client.send(jsonAddChatMessage);
-        };
-      });
-    });
-
-    ws.on('close', e => {
-      console.log(e)
-    });
-  });
-}
+});
 
 
 
