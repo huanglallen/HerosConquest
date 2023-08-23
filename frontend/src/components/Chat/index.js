@@ -10,7 +10,7 @@ const Chat = () => {
 
 
     useEffect(() => {
-        const newSocket = new WebSocket('ws://localhost:10000/ws');
+        const newSocket = new WebSocket('ws://localhost:5055/ws');
 
         newSocket.onopen = () => {
             console.log('WebSocket connected');
