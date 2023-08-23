@@ -8,6 +8,7 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState('');
 
+
     useEffect(() => {
         const newSocket = new WebSocket('ws://localhost:8080/ws');
 
@@ -50,8 +51,8 @@ const Chat = () => {
     const sendMessage = () => {
         if (inputValue.trim() === '') return;
 
-        // Get current time
-        const timestamp = new Date().toLocaleTimeString();
+        //message format
+        const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         const formattedMessage = `[${timestamp}] ${username}: ${inputValue}`;
         const message = {
           type: 'chat-message',
@@ -69,7 +70,11 @@ const Chat = () => {
             </h1>
           <div className='chat-body'>
             {messages.map((message, index) => (
-              <div key={index} className=''>{message}</div>
+              <div key={index} className={`${message.username}-chat`}>
+                <span style={{ color: message.includes(username) ? 'black' : '#6986c0' }}>
+                    {message}
+                </span>
+              </div>
             ))}
           </div>
           <div className='chat-play'>

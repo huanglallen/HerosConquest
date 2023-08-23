@@ -9,7 +9,7 @@
     border: black solid 5px;
     border-radius: 15px;
     padding: 1.5rem;
-    background-color: #455768;
+    background-color: var(--hero);
 }
 
 .chat-title {
@@ -18,8 +18,8 @@
 }
 
 .chat-body {
-    display: flex;
     justify-content: center;
+    color: black;
     background-color: azure;
     border: black 4px solid;
     border-radius: 15px;
@@ -29,13 +29,18 @@
     padding: 0.5rem;
 }
 
+.chat-body > div {
+    margin: 10px auto;
+    size: 16px;
+}
+
 .chat-play {
     display: flex;
     border: black solid 4px;
     border-radius: 15px;
     width: auto;
     padding: 5px;
-    background-color: #2b424a;
+    background-color: #2d62cd;
 }
 
 .chat-input {
