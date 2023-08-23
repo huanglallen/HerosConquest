@@ -48,9 +48,9 @@ app.use(routes);
 //WebSockets
 const { createServer } = require('http');
 const WebSocket = require('ws');
+  const server = createServer(app);
 
 // if(isProduction) {
-//   const server = createServer(app);
 //   const wss = new WebSocket.Server({
 //     port: server,
 //     path: '/ws',
@@ -84,11 +84,12 @@ const WebSocket = require('ws');
 //     });
 //   });
 // } else {
-  const wss = new WebSocket.Server({
-    port: 8080,
-    path: '/ws',
-    clientTracking: true
-  });
+  const wss = new WebSocket.Server({ server });
+  // const wss = new WebSocket.Server({
+  //   port: 8080,
+  //   path: '/ws',
+  //   clientTracking: true
+  // });
 
   wss.on('connection', ws => {
     ws.on('message', jsonData => {
