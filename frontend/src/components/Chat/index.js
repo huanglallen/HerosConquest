@@ -72,7 +72,7 @@ const Chat = () => {
               value={inputValue}
               onChange={handleInputChange}
             />
-            <button className='class-send' onClick={sendMessage}>Send</button>
+            <button className='chat-send' onClick={sendMessage}>Send</button>
           </div>
         </div>
     );

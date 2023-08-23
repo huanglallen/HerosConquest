@@ -3,31 +3,51 @@
     flex-direction: column;
     justify-content: center;
     width: 65%;
+    max-width: 1350px;
+    height: 100%;
     margin: 1.5rem auto;
+    border: black solid 5px;
+    border-radius: 15px;
+    padding: 1.5rem;
+    background-color: #455768;
 }
 
 .chat-title {
     margin: auto;
     justify-content: center;
-    padding: 10px;
 }
 
 .chat-body {
-    border: red 1px solid;
-    height: 60%;
+    display: flex;
+    justify-content: center;
+    background-color: azure;
+    border: black 4px solid;
+    border-radius: 15px;
+    height: 80%;
     width: 100%;
-    margin: auto;
-    padding: auto;
+    margin: 15px auto;
+    padding: 0.5rem;
 }
 
 .chat-play {
     display: flex;
-    border: black solid 3px;
+    border: black solid 4px;
     border-radius: 15px;
+    width: auto;
     padding: 5px;
-    background-color: rgb(72, 72, 230);
+    background-color: #2b424a;
 }
 
 .chat-input {
     border-radius: 15px;
+    padding: 10px;
+    width: 80%;
+    font-size: 16px;
+}
+
+.chat-send {
+    border: 3px black solid;
+    box-shadow: none;
+    color: black;
+    background-color: whitesmoke;
 }
