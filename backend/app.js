@@ -46,9 +46,6 @@ const routes = require('./routes');
 app.use(routes);
 
 //WebSockets
-// const { createServer } = require('http');
-// const WebSocket = require('ws');
-//   const server = createServer(app);
 
 // if(isProduction) {
 //   const wss = new WebSocket.Server({
