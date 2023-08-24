@@ -1,10 +1,13 @@
-// Import environment variables
 require('dotenv').config();
 
 const { port } = require('../config');
 
 const app = require('../app');
 const db = require('../db/models');
+const http = require('http'); // Import the http module
+
+// Create an HTTP server with the Express app
+const server = http.createServer(app);
 
 // Check the database connection before starting the app
 db.sequelize
@@ -12,10 +15,48 @@ db.sequelize
   .then(() => {
     console.log('Database connection success! Sequelize is ready to use...');
 
-    // Start listening for connections
-    app.listen(port, () => console.log(`Listening on port ${port}...`));
+    // Start listening for connections (use the same port as your Express app)
+    server.listen(port, () => {
+      console.log(`Listening on port ${port}...`);
+    });
   })
   .catch((err) => {
     console.log('Database connection failure.');
     console.error(err);
   });
+
+// WebSocket server
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({
+  server, // Use the same server for WebSocket and HTTP
+  path: '/ws',
+  clientTracking: true
+});
+
+wss.on('connection', ws => {
+  console.log('connecting')
+  ws.on('message', jsonData => {
+    console.log(`processing incoming message: ${jsonData}...`);
+    const message = JSON.parse(jsonData);
+    const chatMessage = message.data;
+
+    const addChatMessage = {
+      type: 'add-chat-message',
+      data: chatMessage
+    };
+
+    const jsonAddChatMessage = JSON.stringify(addChatMessage);
+    console.log(`Sending Message: ${jsonAddChatMessage}...`);
+
+    wss.clients.forEach(client => {
+      //Ready states include: CONNECTING, OPEN, CLOSING, CLOSED
+      if(client.readyState === WebSocket.OPEN) {
+        client.send(jsonAddChatMessage);
+      };
+    });
+  });
+
+  ws.on('close', e => {
+    console.log(e)
+  });
+});
