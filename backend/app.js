@@ -1,5 +1,6 @@
 const express = require('express');
 require('express-async-errors');
+const http = require('http'); // Import the http module
 const morgan = require('morgan');
 const cors = require('cors');
 const csurf = require('csurf');
@@ -24,7 +25,7 @@ if (!isProduction) {
   app.use(cors());
 }
 
-// helmet helps set a variety of headers to better secure your app
+// helmet helps set a variety of headers to better secure app
 app.use(
   helmet.crossOriginResourcePolicy({
     policy: "cross-origin"
@@ -46,50 +47,16 @@ const routes = require('./routes');
 app.use(routes);
 
 //WebSockets
+const { createServer } = require('http');
+const WebSocket = require('ws');
+const server = createServer(app);
 
-// if(isProduction) {
-//   const wss = new WebSocket.Server({
-//     port: server,
-//     path: '/ws',
-//     clientTracking: true
-//   });
-
-//   wss.on('connection', ws => {
-//     ws.on('message', jsonData => {
-//       console.log(`processing incoming message: ${jsonData}...`);
-//       const message = JSON.parse(jsonData);
-//       const chatMessage = message.data;
-
-//       const addChatMessage = {
-//         type: 'add-chat-message',
-//         data: chatMessage
-//       };
-
-//       const jsonAddChatMessage = JSON.stringify(addChatMessage);
-//       console.log(`Sending Message: ${jsonAddChatMessage}...`);
-
-//       wss.clients.forEach(client => {
-//         //Ready states include: CONNECTING, OPEN, CLOSING, CLOSED
-//         if(client.readyState === WebSocket.OPEN) {
-//           client.send(jsonAddChatMessage);
-//         };
-//       });
-//     });
-
-//     ws.on('close', e => {
-//       console.log(e)
-//     });
-//   });
-// } else {
-  const { createServer } = require('http');
-  const WebSocket = require('ws');
-    const server = createServer(app);
-
-  const wss = new WebSocket.Server({
-      port: 5055,
-      path: '/ws',
-      clientTracking: true
-    });
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({
+  server, // Use the same server for WebSocket and HTTP
+  path: '/ws',
+  clientTracking: true
+});
 
     wss.on('connection', ws => {
       ws.on('message', jsonData => {
