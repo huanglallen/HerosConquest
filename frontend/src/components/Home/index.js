@@ -7,7 +7,7 @@ const Home = () => {
                 <h1>Welcome to Hero's Conquest</h1>
             </div>
             <hr/>
-            <body className='home-body'>
+            <div className='home-body'>
                 <hr/>
                 <h1>How to Play</h1>
                 <hr/>
@@ -47,7 +47,7 @@ const Home = () => {
                 <p>
                     Instead of the current form of battling, battles will become automated. When players create a battle, players can press a 'Start' button and the heroes/monsters will continuously attack eachother until one falls.
                 </p>
-            </body>
+            </div>
         </div>
     );
 };
