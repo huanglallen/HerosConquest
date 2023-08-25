@@ -12,7 +12,6 @@ const HeroesIndex = () => {
     const heroesObj = useSelector(state => state.heroes.userHeroes);
     const userHeroes = Object.values(heroesObj);
 
-    console.log(userHeroes)
 
     useEffect(() => {
         dispatch(getUserHeroes(userId));

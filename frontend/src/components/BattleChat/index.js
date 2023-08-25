@@ -18,7 +18,7 @@ const BattleChat = ({ battle }) => {
   const [healthH, setHealthH] = useState(battle.heroHp);
   const [healthM, setHealthM] = useState(battle.monsterHp);
   const webSocket = useRef(null);
-  
+
 
   useEffect(() => {
     if (battle.monsterHp !== healthM) {
@@ -33,7 +33,7 @@ const BattleChat = ({ battle }) => {
             data: newMessage,
         });
         let newMsg = JSON.parse(jsonNewMessage);
-        console.log(`Sending message: ${newMsg.data.message}...`);
+        // console.log(`Sending message: ${newMsg.data.message}...`);
 
         if (webSocket.current) {
             webSocket.current.send(jsonNewMessage);
@@ -55,7 +55,7 @@ const BattleChat = ({ battle }) => {
         });
 
         let newMsg = JSON.parse(jsonNewMessage);
-        console.log(`Sending message: ${newMsg.data.message}...`);
+        // console.log(`Sending message: ${newMsg.data.message}...`);
 
         if (webSocket.current) {
             webSocket.current.send(jsonNewMessage);
@@ -68,7 +68,7 @@ const BattleChat = ({ battle }) => {
         }
     }, [battle.heroHp, battle.monsterHp]);
 
-    console.log('[MESSAGES]', messages)
+    // console.log('[MESSAGES]', messages)
 
   return (
     <div className='chat-wrapper'>

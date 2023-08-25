@@ -13,15 +13,15 @@ const server = http.createServer(app);
 db.sequelize
   .authenticate()
   .then(() => {
-    console.log('Database connection success! Sequelize is ready to use...');
+    // console.log('Database connection success! Sequelize is ready to use...');
 
     // Start listening for connections (use the same port as your Express app)
     server.listen(port, () => {
-      console.log(`Listening on port ${port}...`);
+      // console.log(`Listening on port ${port}...`);
     });
   })
   .catch((err) => {
-    console.log('Database connection failure.');
+    // console.log('Database connection failure.');
     console.error(err);
   });
 
@@ -34,9 +34,9 @@ const wss = new WebSocket.Server({
 });
 
 wss.on('connection', ws => {
-  console.log('connecting')
+  // console.log('connecting')
   ws.on('message', jsonData => {
-    console.log(`processing incoming message: ${jsonData}...`);
+    // console.log(`processing incoming message: ${jsonData}...`);
     const message = JSON.parse(jsonData);
     const chatMessage = message.data;
 
@@ -46,7 +46,7 @@ wss.on('connection', ws => {
     };
 
     const jsonAddChatMessage = JSON.stringify(addChatMessage);
-    console.log(`Sending Message: ${jsonAddChatMessage}...`);
+    // console.log(`Sending Message: ${jsonAddChatMessage}...`);
 
     wss.clients.forEach(client => {
       //Ready states include: CONNECTING, OPEN, CLOSING, CLOSED
@@ -57,6 +57,6 @@ wss.on('connection', ws => {
   });
 
   ws.on('close', e => {
-    console.log(e)
+    // console.log(e)
   });
 });

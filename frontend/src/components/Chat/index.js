@@ -16,17 +16,17 @@ const Chat = () => {
         // const newSocket = new WebSocket('ws://localhost:5055/ws');
 
         newSocket.onopen = () => {
-            console.log('WebSocket connected');
+            // console.log('WebSocket connected');
         };
 
         newSocket.onmessage = e => {
             const message = JSON.parse(e.data);
-            console.log('e.data', message.data)
+            // console.log('e.data', message.data)
             handleMessage(message.data);
         };
 
         newSocket.onclose = () => {
-            console.log('WebSocket disconnected');
+            // console.log('WebSocket disconnected');
         };
 
         setSocket(newSocket);
