@@ -11,6 +11,7 @@ import BattlesIndex from "./components/BattlesIndex";
 import NewBattle from "./components/BattlesIndex/NewBattle";
 import BattleField from "./components/BattleField";
 import Chat from "./components/Chat";
+import About from "./components/About";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return ( 
+  return (
     <>
       {isLoaded && (
         <Switch>
@@ -31,6 +32,7 @@ function App() {
             <Route expact path = '/battles/fight/:battleId' component={BattleField}/>
             <Route exact path='/battles' component={BattlesIndex}/>
             <Route exact path='/chat' component={Chat}/>
+            <Route exact path='/about-me' component={About}/>
             <Route exact path='/' component={Home}/>
           </Layout>
         </Switch>

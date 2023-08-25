@@ -14,6 +14,7 @@ const NavButtons = () => {
             <NavLink to='/heroes' className="navlink">Heroes</NavLink>
             <NavLink to='/battles' className="navlink">Battle</NavLink>
             <NavLink to='/chat' className="navlink">Chat</NavLink>
+            <NavLink to='/about-me' className="navlink">About Me</NavLink>
           </>
         ) : (
           <>
@@ -21,6 +22,7 @@ const NavButtons = () => {
             <div className='navdisabled'>Heroes</div>
             <div className='navdisabled'>Battle</div>
             <div className='navdisabled'>Chat</div>
+            <NavLink to='/about-me' className="navlink">About Me</NavLink>
           </>
         )}
       </div>
