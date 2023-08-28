@@ -82,9 +82,10 @@ Returns the information for the logged in user
 `DELETE /api/monsters/:monsterId`
 * Deletes the monster if its hp is 0 or if user presses the 'Run' button
 
-### Coins
-`GET /api/heroes/:heroId/coins`
-* Displays the coins that the current hero owns
+### WebSocket API
+`/chat`
+* Displays a global chat for all users to be able to participate in
+* Users can send and view messages in real time
 
-`PUT /api/heroes/:heroId/coins`
-* Updates the coins the hero owns
+`GET /api/battles`
+* During a battle, users can view battle-text as attacks occur
