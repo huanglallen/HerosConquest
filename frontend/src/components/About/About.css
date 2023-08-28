@@ -1,3 +1,31 @@
 #about {
-    border: red solid 1px;
+    margin: 0 auto;
+    width: 720px;
+}
+
+.about-title {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 20px;
+    font-size: 40px;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px black;
+    transform: perspective(400px) rotateX(20deg);
+}
+
+.about-text {
+    padding: 2rem;
+    font-size: 22px;
+    text-align: center;
+}
+
+.about-links {
+    display: flex;
+    justify-content: space-around;
+}
+
+.about-links > a > img {
+    margin: 15px;
+    width: 80px;
 }

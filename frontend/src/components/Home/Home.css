@@ -19,6 +19,7 @@
     justify-content: center;
     margin: auto;
     padding-top: 15px;
+    font-size: 36px;
     color: whitesmoke;
     text-shadow: 2px 2px 4px black;
     transform: perspective(400px) rotateX(20deg);
