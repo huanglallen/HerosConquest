@@ -1,6 +1,9 @@
 # Hero's Conquest
 Hero's Conquest is a turn-based role-playing game that allows players to create their own custom characters and progress through battling monsters and utilizing their rewards!
 
+![GIF](https://media.giphy.com/media/OxdLWb9KBLeZLdbaPi/giphy.gif)
+
+
 ## Technologies Used
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
